@@ -71,16 +71,22 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .truth{background:#fff;padding:110px 68px}
 .truth-inner{max-width:920px;margin:0 auto}
 .truth-h2{font-family:var(--serif);font-size:48px;color:var(--dark);margin:0 0 16px;white-space:pre-line;line-height:1.08;font-weight:600}
-.truth-sub{font-family:var(--sans);font-size:15px;color:var(--gray);max-width:520px;line-height:1.75;margin:0 0 52px;font-weight:300}
-.truth-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--salmon-l);padding:20px 0}
-.truth-bad{display:flex;align-items:flex-start;gap:14px;padding-right:32px}
-.truth-good{display:flex;align-items:flex-start;gap:14px;padding-left:32px;border-left:1px solid var(--salmon-l)}
-.t-x{color:var(--gray-l);font-size:14px;margin-top:2px;flex-shrink:0}
-.t-chk{color:var(--salmon);font-size:14px;margin-top:2px;flex-shrink:0}
-.t-bad{font-family:var(--sans);font-size:13px;color:var(--gray-l);text-decoration:line-through;line-height:1.5}
-.t-good{font-family:var(--sans);font-size:13px;color:var(--dark);font-weight:600;line-height:1.5}
+.truth-sub{font-family:var(--sans);font-size:15px;color:var(--gray);max-width:520px;line-height:1.75;margin:0 0 40px;font-weight:300}
+/* column headers */
+.truth-cols-header{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:0}
+.truth-col-label{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:10px 20px 10px 0;color:var(--gray-l)}
+.truth-col-label.right{padding-left:20px;padding-right:0;color:var(--salmon);border-left:2px solid var(--salmon)}
+/* rows */
+.truth-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--salmon-l);padding:0}
+.truth-std{padding:18px 20px 18px 0;font-family:var(--sans);font-size:13px;color:var(--gray);line-height:1.5;font-weight:400}
+.truth-lnv{padding:18px 0 18px 20px;font-family:var(--sans);font-size:13px;color:var(--dark);font-weight:600;line-height:1.5;border-left:2px solid var(--salmon)}
+.truth-arrow{color:var(--salmon-l);margin:0 4px;font-size:12px}
 .truth-border{border-top:1px solid var(--salmon-l)}
 .truth-fn{font-size:10px;color:var(--gray-l);font-family:var(--sans);margin-top:20px;letter-spacing:.04em}
+@media(max-width:767px){
+  .truth-std,.truth-lnv{padding:14px 12px 14px 0;font-size:12px}
+  .truth-lnv{padding-left:12px}
+}
 
 /* PRODUCT */
 .product{background:var(--salmon-l);padding:110px 68px}
@@ -226,8 +232,10 @@ img{display:block;width:100%;height:100%;object-fit:cover}
   .women{padding:64px 20px}
   .women-h2{font-size:34px}
   .women-grid{grid-template-columns:1fr 1fr}
-  .wcard.tall,.wcard.side{height:260px}
-  .wcard.wide{grid-column:1 / -1;height:260px}
+  .wcard.tall{height:260px}
+  .wcard.wide{grid-column:span 2;height:260px}
+  .wcard.side{height:260px}
+  .women-grid .wcard:nth-child(3){grid-column:span 2}
   .women-grid .wcard:nth-child(3){grid-column:1 / -1;height:300px}
   .about{padding:64px 20px}
   .about-h2{font-size:34px}
@@ -287,6 +295,10 @@ img{display:block;width:100%;height:100%;object-fit:cover}
     <div class="eyebrow" id="tr-eyebrow"></div>
     <h2 class="truth-h2" id="tr-h2"></h2>
     <p class="truth-sub" id="tr-sub"></p>
+    <div class="truth-cols-header">
+      <div class="truth-col-label" id="tr-col-std"></div>
+      <div class="truth-col-label right" id="tr-col-lnv"></div>
+    </div>
     <div id="tr-rows"></div>
     <div class="truth-border"></div>
     <p class="truth-fn" id="tr-fn"></p>
@@ -430,11 +442,13 @@ const COPY = {
     truth:{eyebrow:'THE SUPPLEMENT INDUSTRY HAS A PROBLEM',
       h2:'Most collagen products\nare underdosed by design.',
       sub:"A dose that looks good on the label but doesn\u2019t reach the threshold your body needs. We chose differently.",
-      rows:[{bad:'2,000\u202fmg collagen \u2014 marketing dose',good:'14,710\u202fmg collagen peptides \u2014 effective dose'},
-            {bad:"Vitamin C \u2018sprinkle\u2019 \u2014 decorative",good:'200\u202fmg Calcium ascorbate \u2014 bioavailable, stable'},
-            {bad:'Zinc below threshold',good:'10\u202fmg Zinc \u2014 100% NRV'},
-            {bad:'Promises overnight results',good:'90-day blind study, 65 women, self-reported outcomes'}],
-      fn:'IRiBS consumer study, Poland, 2024. Blind HUT methodology, n=65, 90 days.'},
+      colStd:'Industry standard',
+      colLnv:'LONVIQ',
+      rows:[{std:'2,000\u202fmg collagen',lnv:'14,710\u202fmg collagen peptides'},
+            {std:"Vitamin C trace \u2014 decorative",lnv:'200\u202fmg Calcium ascorbate \u2014 bioavailable'},
+            {std:'Zinc below threshold',lnv:'10\u202fmg Zinc \u2014 100% NRV'},
+            {std:'Biotin often missing',lnv:'250\u202f\u00b5g Biotin \u2014 hair & nails'}],
+      fn:''},
     product:{eyebrow:'THE PRODUCT',h2:'Kollagen Beauty',
       desc:'Hydrolysed fish collagen peptides Type I\u202f&\u202fIII with Vitamin C, Zinc and Biotin. Unflavoured. Dissolves in any drink.',
       wt:'450\u202fg \u00b7 30 servings',
@@ -480,11 +494,13 @@ const COPY = {
     truth:{eyebrow:'DIE SUPPLEMENT-BRANCHE HAT EIN PROBLEM',
       h2:'Die meisten Kollagen-Produkte\nsind absichtlich unterdosiert.',
       sub:'Eine Dosis, die auf dem Etikett gut aussieht, aber nicht die Schwelle erreicht, die dein K\u00f6rper braucht. Wir haben uns anders entschieden.',
-      rows:[{bad:'2.000\u202fmg Kollagen \u2014 Marketing-Dosis',good:'14.710\u202fmg Kollagenpeptide \u2014 wirksame Dosis'},
-            {bad:"Vitamin C \u2018Spur\u2019 \u2014 dekorativ",good:'200\u202fmg Calciumascorbat \u2014 bioverfügbar, stabil'},
-            {bad:'Zink unter Schwellenwert',good:'10\u202fmg Zink \u2014 100\u202f% NRV'},
-            {bad:'Verspricht Ergebnisse \u00fcber Nacht',good:'90-Tage-Blindstudie, 65 Frauen, selbst berichtete Ergebnisse'}],
-      fn:'IRiBS Verbraucherstudie, Polen, 2024. Blind-HUT-Methodik, n=65, 90 Tage.'},
+      colStd:'Branchenstandard',
+      colLnv:'LONVIQ',
+      rows:[{std:'2.000\u202fmg Kollagen',lnv:'14.710\u202fmg Kollagenpeptide'},
+            {std:'Vitamin C Spur \u2014 dekorativ',lnv:'200\u202fmg Calciumascorbat \u2014 bioverfügbar'},
+            {std:'Zink unter Schwellenwert',lnv:'10\u202fmg Zink \u2014 100\u202f% NRV'},
+            {std:'Biotin oft fehlend',lnv:'250\u202f\u00b5g Biotin \u2014 Haare & N\u00e4gel'}],
+      fn:''},
     product:{eyebrow:'DAS PRODUKT',h2:'Kollagen Beauty',
       desc:'Hydrolysierte Fischkollagen-Peptide Typ I\u202f&\u202fIII mit Vitamin C, Zink und Biotin. Geschmacksneutral. L\u00f6st sich in jedem Getr\u00e4nk auf.',
       wt:'450\u202fg \u00b7 30 Portionen',
@@ -571,10 +587,12 @@ function renderCopy(){
   document.getElementById('tr-eyebrow').textContent = c.truth.eyebrow;
   document.getElementById('tr-h2').textContent = c.truth.h2;
   document.getElementById('tr-sub').textContent = c.truth.sub;
+  document.getElementById('tr-col-std').textContent = c.truth.colStd;
+  document.getElementById('tr-col-lnv').textContent = c.truth.colLnv;
   document.getElementById('tr-rows').innerHTML = c.truth.rows.map(r=>
     `<div class="truth-row">
-      <div class="truth-bad"><span class="t-x">&#x2715;</span><span class="t-bad">${r.bad}</span></div>
-      <div class="truth-good"><span class="t-chk">&#x2713;</span><span class="t-good">${r.good}</span></div>
+      <div class="truth-std">${r.std}</div>
+      <div class="truth-lnv">${r.lnv}</div>
     </div>`
   ).join('');
   document.getElementById('tr-fn').textContent = c.truth.fn;
