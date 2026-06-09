@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LONVIQ — Kollagen Beauty</title>
+<meta name="description" content="LONVIQ Kollagen Beauty — full dose collagen supplement with 14,710mg collagen peptides, Vitamin C, Zinc and Biotin. No magic. Just ingredients.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --salmon:#D4967A;--salmon-l:#F5EDE8;--gold:#B8860B;
+  --dark:#1E1612;--dark-mid:#3D2B22;--gray:#8A7A72;--gray-l:#C4B8B2;
+  --cream:#FAFAF8;--white:#fff;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --sans:'Inter',Helvetica,sans-serif;
+  --label:'Montserrat',Helvetica,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--dark);-webkit-font-smoothing:antialiased}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:100;background:rgba(250,250,248,0.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--salmon-l);padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;transition:all .3s}
+.nav-logo{display:flex;align-items:center;gap:9px;cursor:pointer}
+.nav-logo-sym{font-family:var(--serif);font-size:20px;color:var(--gold);line-height:1}
+.nav-logo-txt{font-family:var(--serif);font-size:18px;font-weight:700;letter-spacing:.18em;color:var(--dark)}
+.nav-links{display:flex;gap:36px}
+.nav-links a{font-size:11px;font-family:var(--label);font-weight:600;letter-spacing:.09em;color:var(--dark-mid);transition:color .2s}
+.nav-links a:hover{color:var(--salmon)}
+.nav-right{display:flex;align-items:center;gap:20px}
+.lang-toggle{display:flex;border:1px solid var(--salmon-l);border-radius:20px;overflow:hidden}
+.lang-btn{padding:5px 14px;font-size:11px;font-family:var(--label);font-weight:700;letter-spacing:.08em;border:none;cursor:pointer;background:transparent;color:var(--gray);transition:all .2s}
+.lang-btn.active{background:var(--salmon);color:#fff}
+.nav-cta{background:var(--dark);color:#fff;font-size:11px;padding:10px 22px;border-radius:2px;font-family:var(--label);font-weight:700;letter-spacing:.09em;transition:background .2s}
+.nav-cta:hover{background:var(--dark-mid)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--dark);transition:all .3s}
+.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(250,250,248,0.98);backdrop-filter:blur(12px);border-bottom:1px solid var(--salmon-l);padding:24px 20px;z-index:99;flex-direction:column;gap:20px}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-size:13px;font-family:var(--label);font-weight:600;letter-spacing:.09em;color:var(--dark-mid);padding:8px 0;border-bottom:1px solid var(--salmon-l)}
+.mobile-menu .m-cta{background:var(--dark);color:#fff;padding:14px 24px;border-radius:2px;text-align:center;font-size:12px;margin-top:4px;border:none}
+
+/* EYEBROW */
+.eyebrow{font-size:10px;letter-spacing:.22em;font-weight:700;font-family:var(--label);color:var(--salmon);margin-bottom:16px;text-transform:uppercase}
+.eyebrow.light{color:rgba(212,150,122,.9)}
+
+/* HERO */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 68px)}
+.hero-copy{display:flex;flex-direction:column;justify-content:center;padding:80px 52px 80px 64px;gap:28px}
+.hero-h1{font-family:var(--serif);font-size:72px;line-height:.93;font-weight:700;letter-spacing:-.01em;color:var(--dark)}
+.hero-h1 .accent{color:var(--salmon)}
+.hero-sub{font-family:var(--sans);font-size:15.5px;color:var(--dark-mid);line-height:1.75;font-weight:300;max-width:400px;white-space:pre-line}
+.hero-cta-wrap{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.btn-primary{display:inline-block;background:var(--dark);color:#fff;padding:15px 38px;font-size:12px;letter-spacing:.12em;font-family:var(--label);font-weight:700;border-radius:2px;transition:background .2s;cursor:pointer;border:none}
+.btn-primary:hover{background:var(--dark-mid)}
+.btn-sub{font-size:11px;color:var(--gray);font-family:var(--sans);font-weight:400}
+.hero-stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--salmon-l);padding-top:26px;margin-top:4px}
+.stat{padding-left:20px;border-left:1px solid var(--salmon-l)}
+.stat:first-child{padding-left:0;border-left:none}
+.stat-n{font-family:var(--serif);font-size:24px;font-weight:600;color:var(--dark);letter-spacing:-.01em}
+.stat-l{font-size:10px;color:var(--gray);font-family:var(--sans);line-height:1.5;white-space:pre-line;margin-top:3px;font-weight:400}
+.hero-photo{position:relative;overflow:hidden;min-height:560px}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to right,rgba(250,250,248,.22) 0%,transparent 22%);pointer-events:none}
+
+/* TRUTH */
+.truth{background:#fff;padding:110px 68px}
+.truth-inner{max-width:920px;margin:0 auto}
+.truth-h2{font-family:var(--serif);font-size:48px;color:var(--dark);margin:0 0 16px;white-space:pre-line;line-height:1.08;font-weight:600}
+.truth-sub{font-family:var(--sans);font-size:15px;color:var(--gray);max-width:520px;line-height:1.75;margin:0 0 52px;font-weight:300}
+.truth-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--salmon-l);padding:20px 0}
+.truth-bad{display:flex;align-items:flex-start;gap:14px;padding-right:32px}
+.truth-good{display:flex;align-items:flex-start;gap:14px;padding-left:32px;border-left:1px solid var(--salmon-l)}
+.t-x{color:var(--gray-l);font-size:14px;margin-top:2px;flex-shrink:0}
+.t-chk{color:var(--salmon);font-size:14px;margin-top:2px;flex-shrink:0}
+.t-bad{font-family:var(--sans);font-size:13px;color:var(--gray-l);text-decoration:line-through;line-height:1.5}
+.t-good{font-family:var(--sans);font-size:13px;color:var(--dark);font-weight:600;line-height:1.5}
+.truth-border{border-top:1px solid var(--salmon-l)}
+.truth-fn{font-size:10px;color:var(--gray-l);font-family:var(--sans);margin-top:20px;letter-spacing:.04em}
+
+/* PRODUCT */
+.product{background:var(--salmon-l);padding:110px 68px}
+.product-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center}
+.product-photo{aspect-ratio:4/5;overflow:hidden;border-radius:3px}
+.product-copy{display:flex;flex-direction:column;gap:26px}
+.product-h2{font-family:var(--serif);font-size:44px;color:var(--dark);margin:0 0 6px;font-weight:600}
+.product-wt{font-size:11px;color:var(--gray);font-family:var(--label);letter-spacing:.07em;font-weight:500}
+.product-desc{font-family:var(--sans);font-size:15px;color:var(--dark-mid);line-height:1.75;font-weight:300}
+.ing-list{display:flex;flex-direction:column}
+.ing-row{display:grid;grid-template-columns:40px 1fr auto;align-items:center;gap:14px;padding:16px 0;border-top:1px solid rgba(212,150,122,.25)}
+.ing-icon{width:40px;height:40px;border-radius:20px;border:1.5px solid var(--salmon);display:flex;align-items:center;justify-content:center;font-size:12px;color:var(--salmon);font-weight:700;font-family:var(--label);flex-shrink:0}
+.ing-name{font-family:var(--sans);font-size:13px;font-weight:600;color:var(--dark)}
+.ing-claim{font-family:var(--sans);font-size:11px;color:var(--gray);margin-top:2px}
+.ing-dose{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--salmon);white-space:nowrap}
+.ing-border{border-top:1px solid rgba(212,150,122,.25)}
+.product-cta-wrap{display:flex;flex-direction:column;gap:10px;align-items:flex-start}
+.product-legal{font-size:10px;color:var(--gray);font-family:var(--sans)}
+
+/* HOWTO */
+.howto{background:#fff;padding:110px 68px}
+.howto-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px;align-items:center}
+.howto-copy{display:flex;flex-direction:column;gap:32px}
+.howto-h2{font-family:var(--serif);font-size:44px;color:var(--dark);margin:0;white-space:pre-line;line-height:1.08;font-weight:600}
+.steps{display:flex;flex-direction:column;gap:24px}
+.step{display:grid;grid-template-columns:36px 1fr;gap:16px;align-items:flex-start}
+.step-n{font-family:var(--serif);font-size:28px;color:var(--salmon);font-weight:600;line-height:1.1}
+.step-t{font-family:var(--sans);font-size:14px;color:var(--dark-mid);line-height:1.75;font-weight:300}
+.howto-note{background:var(--salmon-l);padding:18px 22px;border-radius:2px;border-left:3px solid var(--salmon);font-family:var(--sans);font-size:13px;color:var(--dark-mid);line-height:1.65}
+.howto-photo{aspect-ratio:4/5;overflow:hidden;border-radius:3px}
+
+/* WOMEN */
+.women{background:var(--cream);padding:110px 68px}
+.women-inner{max-width:1220px;margin:0 auto}
+.women-head{display:grid;grid-template-columns:300px 1fr;gap:80px;margin-bottom:64px;align-items:end}
+.women-h2{font-family:var(--serif);font-size:44px;color:var(--dark);margin:0 0 16px;white-space:pre-line;line-height:1.08;font-weight:600}
+.women-sub{font-family:var(--sans);font-size:14px;color:var(--gray);line-height:1.75;font-weight:300}
+.women-tagline{font-family:var(--sans);font-size:13px;color:var(--gray-l);font-weight:300;font-style:italic;text-align:right}
+/* mixed grid — spójny układ 3+2 */
+.women-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+/* card base */
+.wcard{position:relative;overflow:hidden;border-radius:3px;background:#e8ddd8}
+.wcard img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+.wcard:hover img{transform:scale(1.04)}
+/* wszystkie karty w pierwszym rzędzie — jednakowa wysokość 420px */
+.wcard.tall{height:420px}
+/* drugi rząd: W4 span 2 + W5 span 1 — ta sama wysokość */
+.wcard.wide{grid-column:span 2;height:420px}
+.wcard.side{height:420px}
+/* quote overlay — zawsze widoczny */
+.wcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(18,9,5,0.82) 0%,rgba(18,9,5,0.35) 48%,transparent 72%);display:flex;flex-direction:column;justify-content:flex-end;padding:24px 22px}
+.overlay-quote{font-family:var(--serif);font-size:14.5px;color:#fff;font-style:italic;line-height:1.55;margin-bottom:9px}
+.overlay-name{font-family:var(--label);font-size:10px;color:rgba(255,255,255,.65);letter-spacing:.12em;font-weight:600}
+
+/* ABOUT */
+.about{background:var(--dark);padding:110px 68px}
+.about-inner{max-width:1120px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:88px}
+.about-left{display:flex;flex-direction:column;gap:28px}
+.about-h2{font-family:var(--serif);font-size:48px;color:#fff;margin:0;white-space:pre-line;line-height:1.08;font-weight:600}
+.about-body{font-family:var(--sans);font-size:15px;color:rgba(255,255,255,.6);line-height:1.85;white-space:pre-line;font-weight:300}
+.values{display:flex;flex-direction:column}
+.value-row{border-top:1px solid rgba(255,255,255,.08);padding:24px 0;display:grid;grid-template-columns:170px 1fr;gap:24px}
+.value-lbl{font-family:var(--label);font-size:11px;color:var(--salmon);font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding-top:2px}
+.value-txt{font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.6);line-height:1.65;font-weight:300}
+.value-border{border-top:1px solid rgba(255,255,255,.08)}
+
+/* NEWSLETTER */
+.newsletter{background:#180F0B;border-top:1px solid rgba(255,255,255,.05);padding:90px 68px;text-align:center}
+.newsletter-h2{font-family:var(--serif);font-size:38px;color:#fff;margin:0 0 16px;white-space:pre-line;line-height:1.15;font-weight:600}
+.newsletter-sub{font-family:var(--sans);font-size:14px;color:rgba(255,255,255,.45);margin:0 0 40px;line-height:1.75;font-weight:300}
+.email-row{display:flex;max-width:440px;margin:0 auto 14px}
+.email-inp{flex:1;padding:14px 18px;font-size:13px;font-family:var(--sans);font-weight:300;border:1px solid rgba(255,255,255,.12);border-right:none;background:rgba(255,255,255,.05);color:#fff;outline:none;border-radius:2px 0 0 2px}
+.email-inp::placeholder{color:rgba(255,255,255,.3)}
+.email-btn{background:var(--salmon);color:#fff;border:none;padding:14px 26px;font-size:11px;letter-spacing:.12em;font-family:var(--label);font-weight:700;cursor:pointer;border-radius:0 2px 2px 0;transition:background .2s}
+.email-btn:hover{background:var(--dark-mid)}
+.nl-legal{font-size:10px;color:rgba(255,255,255,.2);font-family:var(--sans);font-weight:300}
+.nl-done{color:var(--salmon);font-family:var(--sans);font-size:15px;margin:0 0 14px}
+
+/* FOOTER */
+.footer{background:#100B08;padding:44px 68px 28px}
+.footer-inner{max-width:1120px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px}
+.footer-brand{display:flex;align-items:center;gap:9px}
+.footer-sym{font-family:var(--serif);font-size:16px;color:var(--gold)}
+.footer-txt{font-family:var(--serif);font-size:15px;font-weight:700;color:#fff;letter-spacing:.18em}
+.footer-tag{font-size:9px;color:rgba(255,255,255,.25);font-family:var(--label);letter-spacing:.18em;margin-left:16px}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:11px;color:rgba(255,255,255,.35);font-family:var(--sans);font-weight:400;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-line{border-top:1px solid rgba(255,255,255,.05);padding-top:20px}
+.footer-legal{font-size:10px;color:rgba(255,255,255,.18);font-family:var(--sans);line-height:1.7;font-weight:300}
+
+/* RESPONSIVE TABLET */
+@media(max-width:1023px){
+  .nav{padding:0 28px;height:64px}
+  .nav-links{display:none}
+  .hero{grid-template-columns:1fr}
+  .hero-copy{padding:56px 32px 48px;order:2}
+  .hero-h1{font-size:52px}
+  .hero-photo{min-height:420px;order:1}
+  .truth{padding:80px 32px}
+  .truth-h2{font-size:38px}
+  .product{padding:80px 32px}
+  .product-inner{grid-template-columns:1fr;gap:48px}
+  .product-photo{max-width:400px}
+  .howto{padding:80px 32px}
+  .howto-inner{grid-template-columns:1fr;gap:48px}
+  .howto-photo{max-width:400px}
+  .women{padding:80px 32px}
+  .women-head{grid-template-columns:1fr;gap:32px}
+  .women-tagline{text-align:left}
+  .wcard.tall,.wcard.wide,.wcard.side{height:340px}
+  .wcard.wide{grid-column:span 2}
+  .about{padding:80px 32px}
+  .about-inner{grid-template-columns:1fr;gap:52px}
+  .about-h2{font-size:40px}
+  .newsletter{padding:72px 32px}
+  .footer{padding:40px 32px 24px}
+  .footer-top{flex-direction:column;align-items:flex-start;gap:20px}
+}
+
+/* RESPONSIVE MOBILE */
+@media(max-width:767px){
+  .nav{padding:0 20px;height:60px}
+  .nav-logo-txt{font-size:15px}
+  .nav-right .nav-cta{display:none}
+  .hamburger{display:flex}
+  .hero-copy{padding:40px 20px 40px}
+  .hero-h1{font-size:40px}
+  .hero-photo{min-height:300px}
+  .hero-stats{grid-template-columns:repeat(2,1fr);gap:16px;padding-top:20px}
+  .stat{padding-left:14px}
+  .truth{padding:64px 20px}
+  .truth-h2{font-size:30px}
+  .truth-sub{font-size:14px;margin-bottom:36px}
+  .truth-row{grid-template-columns:1fr;gap:10px}
+  .truth-good{border-left:none;padding-left:0;border-top:1px solid var(--salmon-l);padding-top:10px}
+  .product{padding:64px 20px}
+  .product-inner{gap:36px}
+  .product-h2{font-size:34px}
+  .howto{padding:64px 20px}
+  .howto-h2{font-size:34px}
+  .women{padding:64px 20px}
+  .women-h2{font-size:34px}
+  .women-grid{grid-template-columns:1fr 1fr}
+  .wcard.tall,.wcard.wide,.wcard.side{height:260px}
+  .wcard.wide{grid-column:span 2}
+  .about{padding:64px 20px}
+  .about-h2{font-size:34px}
+  .value-row{grid-template-columns:1fr;gap:8px}
+  .newsletter{padding:56px 20px}
+  .newsletter-h2{font-size:28px}
+  .email-row{flex-direction:column}
+  .email-inp{border-right:1px solid rgba(255,255,255,.12);border-bottom:none;border-radius:2px 2px 0 0}
+  .email-btn{border-radius:0 0 2px 2px;padding:14px}
+  .footer{padding:36px 20px 20px}
+  .footer-links{flex-wrap:wrap;gap:16px}
+  .footer-tag{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+    <span class="nav-logo-sym">∞</span>
+    <span class="nav-logo-txt">LONVIQ</span>
+  </div>
+  <div class="nav-links" id="nav-links"></div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('EN')">EN</button>
+      <button class="lang-btn" id="btn-de" onclick="setLang('DE')">DE</button>
+    </div>
+    <a href="#" onclick="return false;" class="nav-cta" id="nav-cta"></a>
+    <div class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu"></div>
+
+<section class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow" id="h-eyebrow"></div>
+    <h1 class="hero-h1" id="h-h1"></h1>
+    <p class="hero-sub" id="h-sub"></p>
+    <div class="hero-cta-wrap">
+      <a href="#" onclick="return false;" class="btn-primary" id="h-cta"></a>
+      <span class="btn-sub" id="h-ctasub"></span>
+    </div>
+    <div class="hero-stats" id="h-stats"></div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/hero-main.png" alt="Woman preparing LONVIQ collagen drink" loading="eager">
+    <div class="hero-overlay"></div>
+  </div>
+</section>
+
+<section class="truth">
+  <div class="truth-inner">
+    <div class="eyebrow" id="tr-eyebrow"></div>
+    <h2 class="truth-h2" id="tr-h2"></h2>
+    <p class="truth-sub" id="tr-sub"></p>
+    <div id="tr-rows"></div>
+    <div class="truth-border"></div>
+    <p class="truth-fn" id="tr-fn"></p>
+  </div>
+</section>
+
+<section class="product">
+  <div class="product-inner">
+    <div class="product-photo">
+      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/still-life.png" alt="LONVIQ Kollagen Beauty" loading="lazy">
+    </div>
+    <div class="product-copy">
+      <div>
+        <div class="eyebrow" id="pr-eyebrow"></div>
+        <h2 class="product-h2" id="pr-h2"></h2>
+        <div class="product-wt" id="pr-wt"></div>
+      </div>
+      <p class="product-desc" id="pr-desc"></p>
+      <div class="ing-list" id="pr-ings"></div>
+      <div class="product-cta-wrap">
+        <a href="#" onclick="return false;" class="btn-primary" id="pr-cta"></a>
+        <span class="product-legal" id="pr-legal"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="howto">
+  <div class="howto-inner">
+    <div class="howto-copy">
+      <div>
+        <div class="eyebrow" id="hw-eyebrow"></div>
+        <h2 class="howto-h2" id="hw-h2"></h2>
+      </div>
+      <div class="steps" id="hw-steps"></div>
+      <div class="howto-note" id="hw-note"></div>
+    </div>
+    <div class="howto-photo">
+      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/hands-use.png" alt="Preparing LONVIQ collagen drink" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<section class="women">
+  <div class="women-inner">
+    <div class="women-head">
+      <div>
+        <div class="eyebrow" id="wm-eyebrow"></div>
+        <h2 class="women-h2" id="wm-h2"></h2>
+        <p class="women-sub" id="wm-sub"></p>
+      </div>
+      <p class="women-tagline" id="wm-tagline"></p>
+    </div>
+    <div class="women-grid">
+      <!-- Rząd 1: 3 równe karty tall -->
+      <div class="wcard tall">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w1-window.png" alt="Anna, 32" loading="lazy">
+        <div class="wcard-overlay">
+          <p class="overlay-quote" id="wq1"></p>
+          <span class="overlay-name" id="wn1"></span>
+        </div>
+      </div>
+      <div class="wcard tall">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w2-kitchen.png" alt="Petra, 47" loading="lazy">
+        <div class="wcard-overlay">
+          <p class="overlay-quote" id="wq2"></p>
+          <span class="overlay-name" id="wn2"></span>
+        </div>
+      </div>
+      <div class="wcard tall">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w3-table.png" alt="Maria, 34" loading="lazy">
+        <div class="wcard-overlay">
+          <p class="overlay-quote" id="wq3"></p>
+          <span class="overlay-name" id="wn3"></span>
+        </div>
+      </div>
+      <!-- Rząd 2: W4 szeroka + W5 boczna -->
+      <div class="wcard wide">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w4-sofa.png" alt="Real woman" loading="lazy">
+        <div class="wcard-overlay">
+          <p class="overlay-quote" id="wq4"></p>
+          <span class="overlay-name" id="wn4"></span>
+        </div>
+      </div>
+      <div class="wcard side">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w5-outdoor.png" alt="Real woman" loading="lazy">
+        <div class="wcard-overlay">
+          <p class="overlay-quote" id="wq5"></p>
+          <span class="overlay-name" id="wn5"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about">
+  <div class="about-inner">
+    <div class="about-left">
+      <div class="eyebrow light" id="ab-eyebrow"></div>
+      <h2 class="about-h2" id="ab-h2"></h2>
+      <p class="about-body" id="ab-body"></p>
+    </div>
+    <div class="values" id="ab-values"></div>
+  </div>
+</section>
+
+<section class="newsletter">
+  <h2 class="newsletter-h2" id="nl-h2"></h2>
+  <p class="newsletter-sub" id="nl-sub"></p>
+  <div class="email-row" id="nl-form">
+    <input class="email-inp" id="nl-email" type="email">
+    <button class="email-btn" id="nl-btn" onclick="submitEmail()"></button>
+  </div>
+  <p class="nl-legal" id="nl-legal"></p>
+</section>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <span class="footer-sym">∞</span>
+        <span class="footer-txt">LONVIQ</span>
+        <span class="footer-tag" id="ft-tag"></span>
+      </div>
+      <div class="footer-links" id="ft-links"></div>
+    </div>
+    <div class="footer-line">
+      <p class="footer-legal" id="ft-legal"></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+const COPY = {
+  EN:{
+    nav:{links:['Ingredients','How it works','Real Women','About'],cta:'Buy on Amazon.de'},
+    hero:{eyebrow:'NO MAGIC. JUST INGREDIENTS.',h1a:'FULL DOSE.',h1b:'NO SHORTCUTS.',
+      sub:'Collagen supplements formulated to actually work.\nNot to impress. Not to go viral. Just to work.',
+      cta:'Shop on Amazon.de',ctaSub:'Free shipping from \u20ac35 \u00b7 30-day supply',
+      stats:[{n:'14,710mg',l:'Collagen peptides\nper serving'},{n:'98.1%',l:'Active collagen\ncontent'},{n:'30',l:'Day supply\nper pack'},{n:'4',l:'Active\ningredients'}]},
+    truth:{eyebrow:'THE SUPPLEMENT INDUSTRY HAS A PROBLEM',
+      h2:'Most collagen products\nare underdosed by design.',
+      sub:"A dose that looks good on the label but doesn\u2019t reach the threshold your body needs. We chose differently.",
+      rows:[{bad:'2,000\u202fmg collagen \u2014 marketing dose',good:'14,710\u202fmg collagen peptides \u2014 effective dose'},
+            {bad:"Vitamin C \u2018sprinkle\u2019 \u2014 decorative",good:'200\u202fmg Calcium ascorbate \u2014 bioavailable, stable'},
+            {bad:'Zinc below threshold',good:'10\u202fmg Zinc \u2014 100% NRV'},
+            {bad:'Promises overnight results',good:'90-day blind study, 65 women, self-reported outcomes'}],
+      fn:'IRiBS consumer study, Poland, 2024. Blind HUT methodology, n=65, 90 days.'},
+    product:{eyebrow:'THE PRODUCT',h2:'Kollagen Beauty',
+      desc:'Hydrolysed fish collagen peptides Type I\u202f&\u202fIII with Vitamin C, Zinc and Biotin. Unflavoured. Dissolves in any drink.',
+      wt:'450\u202fg \u00b7 30 servings',
+      ings:[{i:'\u25ce',n:'Collagen Peptides',d:'14,710\u202fmg',c:'Type I\u202f&\u202fIII, hydrolysed'},
+            {i:'C',n:'Vitamin C',d:'200\u202fmg',c:'Supports normal collagen formation*'},
+            {i:'Zn',n:'Zinc',d:'10\u202fmg',c:'Contributes to normal skin maintenance*'},
+            {i:'B',n:'Biotin',d:'250\u202f\u00b5g',c:'Supports normal hair and nail maintenance*'}],
+      cta:'Buy on Amazon.de',legal:'* EU Regulation 1924/2006 approved health claims.'},
+    howto:{eyebrow:'HOW TO USE',h2:'One scoop.\nAny drink.\nEvery day.',
+      steps:[{n:'1',t:'Add one level scoop (15\u202fg) to water, juice, coffee or a smoothie.'},
+             {n:'2',t:'Stir or shake for 30 seconds. Dissolves fully, no clumps.'},
+             {n:'3',t:'Drink once daily, preferably in the morning. Consistency over 90 days matters.'}],
+      note:'Unflavoured and odourless \u2014 works in any drink without changing the taste.'},
+    women:{eyebrow:'REAL WOMEN',h2:'Less filter.\nMore results.',
+      sub:'No influencers. No before-and-after. Just women who wanted something that works.',
+      tagline:'Real words from real customers.',
+      quotes:[{t:'I just wanted something without the wellness nonsense.',n:'Anna, 32'},
+              {t:"Finally a supplement brand that doesn\u2019t talk to me like I\u2019m 22.",n:'Petra, 47'},
+              {t:'The dose is real. I checked.',n:'Maria, 34'},
+              {t:'I stopped buying supplements that only look good on the shelf.',n:'Sophie, 38'},
+              {t:'90 days in. My nails finally stopped breaking.',n:'Elena, 52'}]},
+    about:{eyebrow:'ABOUT LONVIQ',h2:'No magic.\nJust ingredients.',
+      body:"LONVIQ was built on one observation: the supplement market is full of products that look credible but aren\u2019t dosed to actually do anything.\n\nWe started with collagen because the science is clear and the market is broken. Every product we make starts with the effective dose, then works backward to the label \u2014 not the other way around.",
+      values:[{l:'Full doses',t:'We publish exact mg per serving. Always.'},
+              {l:'EFSA claims only',t:'Every health claim is EU-approved. No invented benefits.'},
+              {l:'Third-party tested',t:'Each batch tested for heavy metals and microbiology.'},
+              {l:'Made in Europe',t:'Produced and packed in Poland. Shipped from Germany.'}]},
+    newsletter:{h2:'Join women who chose\ningredients over promises.',
+      sub:'Product launches, ingredient updates, and nothing else. No manifestation advice.',
+      placeholder:'Your email address',cta:'Subscribe',
+      legal:'By subscribing you agree to receive emails from LONVIQ. Unsubscribe anytime.',
+      done:"You\u2019re in. We\u2019ll be in touch only when it matters."},
+    footer:{tag:'NO MAGIC. JUST INGREDIENTS.',
+      links:[{t:'Privacy Policy',u:'privacy.html'},{t:'Imprint',u:'imprint.html'},{t:'Contact',u:'mailto:contact@lonviq.com'},{t:'Amazon.de',u:'#'}],
+      legal:'LONVIQ is a brand of MOLIS Sp. z o.o., Akacjowa 2, 55-080 Smolec, Poland. Food supplement. Not a medicinal product. Do not exceed the recommended daily dose.'},
+  },
+  DE:{
+    nav:{links:['Inhaltsstoffe','Anwendung','Echte Frauen','\u00dcber uns'],cta:'Bei Amazon.de kaufen'},
+    hero:{eyebrow:'KEIN ZAUBER. NUR ZUTATEN.',h1a:'VOLLE DOSIS.',h1b:'KEINE ABK\u00dcRZUNGEN.',
+      sub:'Kollagen-Supplements, die wirklich wirken.\nNicht um zu beeindrucken. Einfach um zu wirken.',
+      cta:'Bei Amazon.de kaufen',ctaSub:'Kostenloser Versand ab 35\u202f\u20ac \u00b7 30-Tage-Vorrat',
+      stats:[{n:'14.710mg',l:'Kollagenpeptide\npro Portion'},{n:'98,1%',l:'Aktiver Kollagen-\nanteil'},{n:'30',l:'Tage Vorrat\npro Packung'},{n:'4',l:'Aktive\nInhaltsstoffe'}]},
+    truth:{eyebrow:'DIE SUPPLEMENT-BRANCHE HAT EIN PROBLEM',
+      h2:'Die meisten Kollagen-Produkte\nsind absichtlich unterdosiert.',
+      sub:'Eine Dosis, die auf dem Etikett gut aussieht, aber nicht die Schwelle erreicht, die dein K\u00f6rper braucht. Wir haben uns anders entschieden.',
+      rows:[{bad:'2.000\u202fmg Kollagen \u2014 Marketing-Dosis',good:'14.710\u202fmg Kollagenpeptide \u2014 wirksame Dosis'},
+            {bad:"Vitamin C \u2018Spur\u2019 \u2014 dekorativ",good:'200\u202fmg Calciumascorbat \u2014 bioverfügbar, stabil'},
+            {bad:'Zink unter Schwellenwert',good:'10\u202fmg Zink \u2014 100\u202f% NRV'},
+            {bad:'Verspricht Ergebnisse \u00fcber Nacht',good:'90-Tage-Blindstudie, 65 Frauen, selbst berichtete Ergebnisse'}],
+      fn:'IRiBS Verbraucherstudie, Polen, 2024. Blind-HUT-Methodik, n=65, 90 Tage.'},
+    product:{eyebrow:'DAS PRODUKT',h2:'Kollagen Beauty',
+      desc:'Hydrolysierte Fischkollagen-Peptide Typ I\u202f&\u202fIII mit Vitamin C, Zink und Biotin. Geschmacksneutral. L\u00f6st sich in jedem Getr\u00e4nk auf.',
+      wt:'450\u202fg \u00b7 30 Portionen',
+      ings:[{i:'\u25ce',n:'Kollagenpeptide',d:'14.710\u202fmg',c:'Typ I\u202f&\u202fIII, hydrolysiert'},
+            {i:'C',n:'Vitamin C',d:'200\u202fmg',c:'Unterst\u00fctzt die normale Kollagenbildung*'},
+            {i:'Zn',n:'Zink',d:'10\u202fmg',c:'Tr\u00e4gt zur normalen Hautpflege bei*'},
+            {i:'B',n:'Biotin',d:'250\u202f\u00b5g',c:'Unterst\u00fctzt normales Haar und normale N\u00e4gel*'}],
+      cta:'Bei Amazon.de kaufen',legal:'* EU-Verordnung 1924/2006 genehmigte gesundheitsbezogene Angaben.'},
+    howto:{eyebrow:'ANWENDUNG',h2:'Ein L\u00f6ffel.\nJedes Getr\u00e4nk.\nJeden Tag.',
+      steps:[{n:'1',t:'Einen gestrichenen Messlöffel (15\u202fg) in Wasser, Saft, Kaffee oder einen Smoothie geben.'},
+             {n:'2',t:'30 Sekunden r\u00fchren oder sch\u00fctteln. L\u00f6st sich vollst\u00e4ndig auf, keine Kl\u00fcmpchen.'},
+             {n:'3',t:'Einmal t\u00e4glich trinken, am besten morgens. Konsequenz \u00fcber 90 Tage ist entscheidend.'}],
+      note:'Geschmacks- und geruchsneutral \u2014 funktioniert in jedem Getr\u00e4nk ohne den Geschmack zu ver\u00e4ndern.'},
+    women:{eyebrow:'ECHTE FRAUEN',h2:'Weniger Filter.\nMehr Ergebnisse.',
+      sub:'Keine Influencerinnen. Kein Vorher-Nachher. Nur Frauen, die etwas wollten, das wirklich wirkt.',
+      tagline:'Echte Worte von echten Kundinnen.',
+      quotes:[{t:'Ich wollte einfach etwas ohne den Wellness-Unsinn.',n:'Anna, 32'},
+              {t:'Endlich eine Supplement-Marke, die nicht mit mir redet wie mit einer 22-J\u00e4hrigen.',n:'Petra, 47'},
+              {t:"Die Dosis ist echt. Ich hab\u2019s nachgepr\u00fcft.",n:'Maria, 34'},
+              {t:'Ich kaufe keine Supplements mehr, die nur gut aussehen.',n:'Sophie, 38'},
+              {t:'Nach 90 Tagen brechen meine N\u00e4gel endlich nicht mehr.',n:'Elena, 52'}]},
+    about:{eyebrow:'\u00dcBER LONVIQ',h2:'Kein Zauber.\nNur Zutaten.',
+      body:'LONVIQ entstand aus einer Beobachtung: Der Supplement-Markt ist voll von Produkten, die glaubw\u00fcrdig aussehen, aber nicht dosiert sind, um wirklich etwas zu bewirken.\n\nWir haben mit Kollagen angefangen, weil die Wissenschaft klar ist und der Markt kaputt ist. Jedes Produkt beginnt mit der wirksamen Dosis und arbeitet sich zum Etikett vor \u2014 nicht umgekehrt.',
+      values:[{l:'Volle Dosen',t:'Wir ver\u00f6ffentlichen genaue mg pro Portion. Immer.'},
+              {l:'Nur EFSA-Claims',t:'Jede gesundheitliche Aussage ist EU-zugelassen. Keine erfundenen Vorteile.'},
+              {l:'Fremdgepr\u00fcft',t:'Jede Charge auf Schwermetalle und Mikrobiologie gepr\u00fcft.'},
+              {l:'Hergestellt in Europa',t:'Produziert und verpackt in Polen. Versand aus Deutschland.'}]},
+    newsletter:{h2:'Werde Teil der Frauen, die\nZutaten statt Versprechen w\u00e4hlen.',
+      sub:'Produktneuheiten, Inhaltsstoff-Updates und sonst nichts. Kein Manifestationsrat.',
+      placeholder:'Deine E-Mail-Adresse',cta:'Abonnieren',
+      legal:'Mit der Anmeldung stimmst du zu, E-Mails von LONVIQ zu erhalten. Jederzeit abbestellbar.',
+      done:'Du bist dabei. Wir melden uns nur, wenn es wichtig ist.'},
+    footer:{tag:'KEIN ZAUBER. NUR ZUTATEN.',
+      links:[{t:'Datenschutz',u:'privacy.html'},{t:'Impressum',u:'imprint.html'},{t:'Kontakt',u:'mailto:contact@lonviq.com'},{t:'Amazon.de',u:'#'}],
+      legal:'LONVIQ ist eine Marke der MOLIS Sp. z o.o., Akacjowa 2, 55-080 Smolec, Polen. Nahrungserg\u00e4nzungsmittel. Kein Arzneimittel. Die empfohlene Tagesdosis nicht \u00fcberschreiten.'},
+  }
+};
+
+let lang = 'EN';
+let emailDone = false;
+
+function setLang(l){
+  lang = l;
+  document.getElementById('btn-en').classList.toggle('active', l==='EN');
+  document.getElementById('btn-de').classList.toggle('active', l==='DE');
+  document.documentElement.lang = l.toLowerCase();
+  renderCopy();
+}
+
+function toggleMenu(){
+  document.getElementById('mobile-menu').classList.toggle('open');
+}
+
+function submitEmail(){
+  const v = document.getElementById('nl-email').value;
+  if(!v) return;
+  emailDone = true;
+  const c = COPY[lang];
+  document.getElementById('nl-form').outerHTML = '<p class="nl-done">'+c.newsletter.done+'</p>';
+}
+
+function renderCopy(){
+  const c = COPY[lang];
+  // NAV
+  document.getElementById('nav-links').innerHTML = c.nav.links.map(l=>`<a href="#">${l}</a>`).join('');
+  document.getElementById('nav-cta').textContent = c.nav.cta;
+  document.getElementById('mobile-menu').innerHTML =
+    c.nav.links.map(l=>`<a href="#">${l}</a>`).join('') +
+    `<a href="#" onclick="return false;" class="m-cta">${c.nav.cta}</a>` +
+    `<div style="display:flex;gap:8px;padding-top:4px">
+      <button class="lang-btn${lang==='EN'?' active':''}" onclick="setLang('EN')">EN</button>
+      <button class="lang-btn${lang==='DE'?' active':''}" onclick="setLang('DE')">DE</button>
+    </div>`;
+  // HERO
+  document.getElementById('h-eyebrow').textContent = c.hero.eyebrow;
+  document.getElementById('h-h1').innerHTML = c.hero.h1a+'<br><span class="accent">'+c.hero.h1b+'</span>';
+  document.getElementById('h-sub').textContent = c.hero.sub;
+  document.getElementById('h-cta').textContent = c.hero.cta;
+  document.getElementById('h-ctasub').textContent = c.hero.ctaSub;
+  document.getElementById('h-stats').innerHTML = c.hero.stats.map(s=>
+    `<div class="stat"><div class="stat-n">${s.n}</div><div class="stat-l">${s.l}</div></div>`
+  ).join('');
+  // TRUTH
+  document.getElementById('tr-eyebrow').textContent = c.truth.eyebrow;
+  document.getElementById('tr-h2').textContent = c.truth.h2;
+  document.getElementById('tr-sub').textContent = c.truth.sub;
+  document.getElementById('tr-rows').innerHTML = c.truth.rows.map(r=>
+    `<div class="truth-row">
+      <div class="truth-bad"><span class="t-x">&#x2715;</span><span class="t-bad">${r.bad}</span></div>
+      <div class="truth-good"><span class="t-chk">&#x2713;</span><span class="t-good">${r.good}</span></div>
+    </div>`
+  ).join('');
+  document.getElementById('tr-fn').textContent = c.truth.fn;
+  // PRODUCT
+  document.getElementById('pr-eyebrow').textContent = c.product.eyebrow;
+  document.getElementById('pr-h2').textContent = c.product.h2;
+  document.getElementById('pr-wt').textContent = c.product.wt;
+  document.getElementById('pr-desc').textContent = c.product.desc;
+  document.getElementById('pr-ings').innerHTML = c.product.ings.map(g=>
+    `<div class="ing-row">
+      <div class="ing-icon">${g.i}</div>
+      <div><div class="ing-name">${g.n}</div><div class="ing-claim">${g.c}</div></div>
+      <div class="ing-dose">${g.d}</div>
+    </div>`
+  ).join('') + '<div class="ing-border"></div>';
+  document.getElementById('pr-cta').textContent = c.product.cta;
+  document.getElementById('pr-legal').textContent = c.product.legal;
+  // HOWTO
+  document.getElementById('hw-eyebrow').textContent = c.howto.eyebrow;
+  document.getElementById('hw-h2').textContent = c.howto.h2;
+  document.getElementById('hw-steps').innerHTML = c.howto.steps.map(s=>
+    `<div class="step"><div class="step-n">${s.n}</div><p class="step-t">${s.t}</p></div>`
+  ).join('');
+  document.getElementById('hw-note').textContent = c.howto.note;
+  // WOMEN
+  document.getElementById('wm-eyebrow').textContent = c.women.eyebrow;
+  document.getElementById('wm-h2').textContent = c.women.h2;
+  document.getElementById('wm-sub').textContent = c.women.sub;
+  document.getElementById('wm-tagline').textContent = c.women.tagline;
+  [1,2,3,4,5].forEach(i=>{
+    const q = c.women.quotes[i-1];
+    document.getElementById('wq'+i).textContent = '\u201c'+q.t+'\u201d';
+    document.getElementById('wn'+i).textContent = '\u2014 '+q.n;
+  });
+  // ABOUT
+  document.getElementById('ab-eyebrow').textContent = c.about.eyebrow;
+  document.getElementById('ab-h2').textContent = c.about.h2;
+  document.getElementById('ab-body').textContent = c.about.body;
+  document.getElementById('ab-values').innerHTML = c.about.values.map(v=>
+    `<div class="value-row"><div class="value-lbl">${v.l}</div><div class="value-txt">${v.t}</div></div>`
+  ).join('') + '<div class="value-border"></div>';
+  // NEWSLETTER
+  document.getElementById('nl-h2').textContent = c.newsletter.h2;
+  document.getElementById('nl-sub').textContent = c.newsletter.sub;
+  const inp = document.getElementById('nl-email');
+  if(inp) inp.placeholder = c.newsletter.placeholder;
+  const btn = document.getElementById('nl-btn');
+  if(btn) btn.textContent = c.newsletter.cta;
+  document.getElementById('nl-legal').textContent = c.newsletter.legal;
+  // FOOTER
+  document.getElementById('ft-tag').textContent = c.footer.tag;
+  document.getElementById('ft-links').innerHTML = c.footer.links.map(l=>
+    `<a href="${l.u}">${l.t}</a>`
+  ).join('');
+  document.getElementById('ft-legal').textContent = c.footer.legal;
+}
+
+renderCopy();
+</script>
+</body>
+</html>
