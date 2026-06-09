@@ -72,20 +72,25 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .truth-inner{max-width:920px;margin:0 auto}
 .truth-h2{font-family:var(--serif);font-size:48px;color:var(--dark);margin:0 0 16px;white-space:pre-line;line-height:1.08;font-weight:600}
 .truth-sub{font-family:var(--sans);font-size:15px;color:var(--gray);max-width:520px;line-height:1.75;margin:0 0 40px;font-weight:300}
-/* column headers */
-.truth-cols-header{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:0}
-.truth-col-label{font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:10px 20px 10px 0;color:var(--gray-l)}
-.truth-col-label.right{padding-left:20px;padding-right:0;color:var(--salmon);border-left:2px solid var(--salmon)}
-/* rows */
-.truth-row{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--salmon-l);padding:0}
-.truth-std{padding:18px 20px 18px 0;font-family:var(--sans);font-size:13px;color:var(--gray);line-height:1.5;font-weight:400}
-.truth-lnv{padding:18px 0 18px 20px;font-family:var(--sans);font-size:13px;color:var(--dark);font-weight:600;line-height:1.5;border-left:2px solid var(--salmon)}
-.truth-arrow{color:var(--salmon-l);margin:0 4px;font-size:12px}
-.truth-border{border-top:1px solid var(--salmon-l)}
-.truth-fn{font-size:10px;color:var(--gray-l);font-family:var(--sans);margin-top:20px;letter-spacing:.04em}
+.truth-table{width:100%;border-collapse:collapse;margin-top:0}
+.truth-table thead th{padding:13px 24px;font-family:var(--label);font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-align:left}
+.truth-table thead th:first-child{background:#F2EAE5;color:var(--gray);border-radius:3px 0 0 0;width:50%}
+.truth-table thead th:last-child{background:#EAD9CF;color:var(--salmon);border-radius:0 3px 0 0;width:50%}
+.truth-table tbody tr td{padding:16px 24px;font-family:var(--sans);font-size:13.5px;line-height:1.5;border-bottom:1px solid rgba(212,150,122,.18)}
+.truth-table tbody tr td:first-child{background:#FAF7F5;color:var(--gray);font-weight:400}
+.truth-table tbody tr td:last-child{background:#F5EDE8;color:var(--dark);font-weight:700}
+.truth-table tbody tr:last-child td{border-bottom:none}
+.truth-table tbody tr:last-child td:first-child{border-radius:0 0 0 3px}
+.truth-table tbody tr:last-child td:last-child{border-radius:0 0 3px 0}
+.truth-fn{font-size:10px;color:var(--gray-l);font-family:var(--sans);margin-top:16px;letter-spacing:.04em}
 @media(max-width:767px){
-  .truth-std,.truth-lnv{padding:14px 12px 14px 0;font-size:12px}
-  .truth-lnv{padding-left:12px}
+  .truth{padding:64px 20px}
+  .truth-h2{font-size:30px}
+  .truth-table thead th{padding:10px 14px;font-size:9px}
+  .truth-table tbody tr td{padding:12px 14px;font-size:12px}
+}
+@media(max-width:1023px) and (min-width:768px){
+  .truth{padding:80px 32px}
 }
 
 /* PRODUCT */
@@ -295,12 +300,7 @@ img{display:block;width:100%;height:100%;object-fit:cover}
     <div class="eyebrow" id="tr-eyebrow"></div>
     <h2 class="truth-h2" id="tr-h2"></h2>
     <p class="truth-sub" id="tr-sub"></p>
-    <div class="truth-cols-header">
-      <div class="truth-col-label" id="tr-col-std"></div>
-      <div class="truth-col-label right" id="tr-col-lnv"></div>
-    </div>
-    <div id="tr-rows"></div>
-    <div class="truth-border"></div>
+    <table class="truth-table" id="tr-table"></table>
     <p class="truth-fn" id="tr-fn"></p>
   </div>
 </section>
@@ -445,7 +445,7 @@ const COPY = {
       colStd:'Industry standard',
       colLnv:'LONVIQ',
       rows:[{std:'2,000\u202fmg collagen',lnv:'14,710\u202fmg collagen peptides'},
-            {std:"Vitamin C trace \u2014 decorative",lnv:'200\u202fmg Calcium ascorbate \u2014 bioavailable'},
+            {std:'Vitamin C trace \u2014 decorative',lnv:'200\u202fmg Calcium ascorbate \u2014 bioavailable'},
             {std:'Zinc below threshold',lnv:'10\u202fmg Zinc \u2014 100% NRV'},
             {std:'Biotin often missing',lnv:'250\u202f\u00b5g Biotin \u2014 hair & nails'}],
       fn:''},
@@ -587,14 +587,11 @@ function renderCopy(){
   document.getElementById('tr-eyebrow').textContent = c.truth.eyebrow;
   document.getElementById('tr-h2').textContent = c.truth.h2;
   document.getElementById('tr-sub').textContent = c.truth.sub;
-  document.getElementById('tr-col-std').textContent = c.truth.colStd;
-  document.getElementById('tr-col-lnv').textContent = c.truth.colLnv;
-  document.getElementById('tr-rows').innerHTML = c.truth.rows.map(r=>
-    `<div class="truth-row">
-      <div class="truth-std">${r.std}</div>
-      <div class="truth-lnv">${r.lnv}</div>
-    </div>`
-  ).join('');
+  document.getElementById('tr-table').innerHTML =
+    `<thead><tr><th>${c.truth.colStd}</th><th>${c.truth.colLnv}</th></tr></thead>` +
+    '<tbody>' + c.truth.rows.map(r=>
+      `<tr><td>${r.std}</td><td>${r.lnv}</td></tr>`
+    ).join('') + '</tbody>';
   document.getElementById('tr-fn').textContent = c.truth.fn;
   // PRODUCT
   document.getElementById('pr-eyebrow').textContent = c.product.eyebrow;
