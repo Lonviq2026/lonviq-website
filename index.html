@@ -122,6 +122,9 @@ img{display:block;width:100%;height:100%;object-fit:cover}
 .step-t{font-family:var(--sans);font-size:14px;color:var(--dark-mid);line-height:1.75;font-weight:300}
 .howto-note{background:var(--salmon-l);padding:18px 22px;border-radius:2px;border-left:3px solid var(--salmon);font-family:var(--sans);font-size:13px;color:var(--dark-mid);line-height:1.65}
 .howto-photo{aspect-ratio:4/5;overflow:hidden;border-radius:3px}
+.howto-photos{display:flex;flex-direction:column;gap:14px}
+.howto-back{border-radius:6px;overflow:hidden;box-shadow:0 4px 24px rgba(30,22,18,0.10);background:var(--salmon-l)}
+.howto-back img{width:100%;height:auto;display:block;object-fit:contain}
 
 /* WOMEN */
 .women{background:var(--cream);padding:110px 68px}
@@ -336,8 +339,13 @@ img{display:block;width:100%;height:100%;object-fit:cover}
       <div class="steps" id="hw-steps"></div>
       <div class="howto-note" id="hw-note"></div>
     </div>
-    <div class="howto-photo">
-      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/hands-use.png" alt="Preparing LONVIQ collagen drink" loading="lazy">
+    <div class="howto-photos">
+      <div class="howto-photo">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/hands-use.png" alt="Preparing LONVIQ collagen drink" loading="lazy">
+      </div>
+      <div class="howto-back">
+        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/doypack-back.png" alt="LONVIQ Kollagen Beauty nutrition facts" loading="lazy">
+      </div>
     </div>
   </div>
 </section>
@@ -436,7 +444,7 @@ const COPY = {
   EN:{
     nav:{links:['Ingredients','How it works','Real Women','About'],cta:'Buy on Amazon.de'},
     hero:{eyebrow:'NO MAGIC. JUST INGREDIENTS.',h1a:'FULL DOSE.',h1b:'NO SHORTCUTS.',
-      sub:'Collagen supplements formulated to actually work.\nNot to impress. Not to go viral. Just to work.',
+      sub:'Collagen supplements formulated to actually work.\nNot to impress. Not to trend. Just to work.',
       cta:'Shop on Amazon.de',ctaSub:'Free shipping from \u20ac35 \u00b7 30-day supply',
       stats:[{n:'14,710mg',l:'Collagen peptides\nper serving'},{n:'98.1%',l:'Active collagen\ncontent'},{n:'30',l:'Day supply\nper pack'},{n:'4',l:'Active\ningredients'}]},
     truth:{eyebrow:'THE SUPPLEMENT INDUSTRY HAS A PROBLEM',
@@ -460,7 +468,7 @@ const COPY = {
     howto:{eyebrow:'HOW TO USE',h2:'One scoop.\nAny drink.\nEvery day.',
       steps:[{n:'1',t:'Add one level scoop (15\u202fg) to water, juice, coffee or a smoothie.'},
              {n:'2',t:'Stir or shake for 30 seconds. Dissolves fully, no clumps.'},
-             {n:'3',t:'Drink once daily, preferably in the morning. Consistency over 90 days matters.'}],
+             {n:'3',t:'Drink once daily, preferably in the morning. Consistency is everything. 90 days minimum.'}],
       note:'Unflavoured and odourless \u2014 works in any drink without changing the taste.'},
     women:{eyebrow:'REAL WOMEN',h2:'Less filter.\nMore results.',
       sub:'No influencers. No before-and-after. Just women who wanted something that works.',
@@ -488,7 +496,7 @@ const COPY = {
   DE:{
     nav:{links:['Inhaltsstoffe','Anwendung','Echte Frauen','\u00dcber uns'],cta:'Bei Amazon.de kaufen'},
     hero:{eyebrow:'KEIN ZAUBER. NUR ZUTATEN.',h1a:'VOLLE DOSIS.',h1b:'KEINE ABK\u00dcRZUNGEN.',
-      sub:'Kollagen-Supplements, die wirklich wirken.\nNicht um zu beeindrucken. Einfach um zu wirken.',
+      sub:'Kollagen-Supplements, die wirklich wirken.\nNicht um zu beeindrucken. Nicht um viral zu gehen. Einfach um zu wirken.',
       cta:'Bei Amazon.de kaufen',ctaSub:'Kostenloser Versand ab 35\u202f\u20ac \u00b7 30-Tage-Vorrat',
       stats:[{n:'14.710mg',l:'Kollagenpeptide\npro Portion'},{n:'98,1%',l:'Aktiver Kollagen-\nanteil'},{n:'30',l:'Tage Vorrat\npro Packung'},{n:'4',l:'Aktive\nInhaltsstoffe'}]},
     truth:{eyebrow:'DIE SUPPLEMENT-BRANCHE HAT EIN PROBLEM',
@@ -497,7 +505,7 @@ const COPY = {
       colStd:'Branchenstandard',
       colLnv:'LONVIQ',
       rows:[{std:'2.000\u202fmg Kollagen',lnv:'14.710\u202fmg Kollagenpeptide'},
-            {std:'Vitamin C Spur \u2014 dekorativ',lnv:'200\u202fmg Calciumascorbat \u2014 bioverfügbar'},
+            {std:'Vitamin C Spur \u2014 wirkungslos',lnv:'200\u202fmg Calciumascorbat \u2014 bioverfügbar'},
             {std:'Zink unter Schwellenwert',lnv:'10\u202fmg Zink \u2014 100\u202f% NRV'},
             {std:'Biotin oft fehlend',lnv:'250\u202f\u00b5g Biotin \u2014 Haare & N\u00e4gel'}],
       fn:''},
@@ -520,15 +528,15 @@ const COPY = {
       quotes:[{t:'Ich wollte einfach etwas ohne den Wellness-Unsinn.',n:'Anna, 32'},
               {t:'Endlich eine Supplement-Marke, die nicht mit mir redet wie mit einer 22-J\u00e4hrigen.',n:'Petra, 47'},
               {t:"Die Dosis ist echt. Ich hab\u2019s nachgepr\u00fcft.",n:'Maria, 34'},
-              {t:'Ich kaufe keine Supplements mehr, die nur gut aussehen.',n:'Sophie, 38'},
+              {t:'Ich kaufe keine Supplements mehr, die nur auf dem Regal gut aussehen.',n:'Sophie, 38'},
               {t:'Nach 90 Tagen brechen meine N\u00e4gel endlich nicht mehr.',n:'Elena, 52'}]},
     about:{eyebrow:'\u00dcBER LONVIQ',h2:'Kein Zauber.\nNur Zutaten.',
-      body:'LONVIQ entstand aus einer Beobachtung: Der Supplement-Markt ist voll von Produkten, die glaubw\u00fcrdig aussehen, aber nicht dosiert sind, um wirklich etwas zu bewirken.\n\nWir haben mit Kollagen angefangen, weil die Wissenschaft klar ist und der Markt kaputt ist. Jedes Produkt beginnt mit der wirksamen Dosis und arbeitet sich zum Etikett vor \u2014 nicht umgekehrt.',
+      body:'LONVIQ entstand aus einer Beobachtung: Der Supplement-Markt ist voll von Produkten, die glaubw\u00fcrdig aussehen, aber nicht dosiert sind, um wirklich etwas zu bewirken.\n\nWir haben mit Kollagen angefangen, weil die Wissenschaft klar ist und der Markt versagt. Jedes Produkt beginnt mit der wirksamen Dosis und arbeitet sich zum Etikett vor \u2014 nicht umgekehrt.',
       values:[{l:'Volle Dosen',t:'Wir ver\u00f6ffentlichen genaue mg pro Portion. Immer.'},
               {l:'Nur EFSA-Claims',t:'Jede gesundheitliche Aussage ist EU-zugelassen. Keine erfundenen Vorteile.'},
               {l:'Fremdgepr\u00fcft',t:'Jede Charge auf Schwermetalle und Mikrobiologie gepr\u00fcft.'},
               {l:'Hergestellt in Europa',t:'Produziert und verpackt in Polen. Versand aus Deutschland.'}]},
-    newsletter:{h2:'Werde Teil der Frauen, die\nZutaten statt Versprechen w\u00e4hlen.',
+    newsletter:{h2:'F\u00fcr Frauen, die Zutaten\n\u00fcber Versprechen stellen.',
       sub:'Produktneuheiten, Inhaltsstoff-Updates und sonst nichts. Kein Manifestationsrat.',
       placeholder:'Deine E-Mail-Adresse',cta:'Abonnieren',
       legal:'Mit der Anmeldung stimmst du zu, E-Mails von LONVIQ zu erhalten. Jederzeit abbestellbar.',
