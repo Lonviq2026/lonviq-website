@@ -328,6 +328,111 @@ body.lang-de .en { display:none !important; }
 }
 
 /* =========================================
+   VIT C TABLE (4-row spec comparison)
+   ========================================= */
+.vctable {
+  background: var(--cream);
+  padding: clamp(60px,8vh,100px) var(--pad);
+  color: var(--bg);
+}
+.vctable-inner { max-width:var(--max); margin:0 auto; }
+.vctable-eye {
+  font-family:var(--data); font-size:12px; font-weight:700;
+  letter-spacing:0.18em; color:var(--terra-dk); text-transform:uppercase;
+  margin-bottom:14px;
+}
+.vctable-title {
+  font-family:var(--display); font-size:clamp(28px,3.5vw,46px);
+  font-weight:600; color:var(--bg); line-height:1.08;
+  margin-bottom:8px; max-width:720px;
+}
+.vctable-sub {
+  font-family:var(--body); font-size:15px; color:var(--stone);
+  max-width:540px; line-height:1.65; margin-bottom:40px;
+}
+.vctable-grid {
+  display:grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  border-top:1.5px solid var(--bg);
+}
+.vctable-row {
+  display:contents;
+}
+.vctable-cell {
+  padding: clamp(16px,2vw,22px) clamp(12px,1.5vw,20px);
+  border-bottom:1px solid rgba(21,16,10,0.15);
+  display:flex; align-items:center;
+}
+.vctable-header .vctable-cell {
+  border-bottom:1px solid var(--bg);
+  font-family:var(--data); font-size:12px; font-weight:700;
+  letter-spacing:0.14em; text-transform:uppercase; color:var(--stone);
+}
+.vctable-header .vctable-cell.lonviq {
+  color:var(--terra-dk);
+}
+.vctable-cell.label {
+  font-family:var(--data); font-size:clamp(14px,1.2vw,16px);
+  font-weight:700; color:var(--bg); letter-spacing:0.04em;
+  text-transform:uppercase;
+}
+.vctable-cell.standard {
+  font-family:var(--body); font-size:clamp(14px,1.3vw,17px);
+  color:var(--stone); font-weight:400;
+}
+.vctable-cell.lonviq {
+  font-family:var(--display); font-size:clamp(16px,1.6vw,21px);
+  color:var(--bg); font-weight:600; font-style:italic;
+  background:rgba(175,90,60,0.06);
+}
+.vctable-cell.lonviq strong {
+  color:var(--terra-dk); font-weight:700; font-style:normal;
+}
+.vctable-footnote {
+  font-family:var(--body); font-size:11px; color:var(--stone);
+  margin-top:18px; line-height:1.5;
+}
+
+/* =========================================
+   KAFFEE BADGE (transitional section)
+   ========================================= */
+.kaffee-badge {
+  background: var(--bg);
+  padding: clamp(56px,7vh,88px) var(--pad);
+  text-align:center;
+  border-top:1px solid rgba(194,152,80,0.12);
+}
+.kaffee-eye {
+  display:inline-block;
+  font-family:var(--data); font-size:11px; font-weight:800;
+  letter-spacing:0.24em; color:var(--bg); text-transform:uppercase;
+  background:var(--gold); padding:6px 16px; margin-bottom:24px;
+}
+.kaffee-title {
+  font-family:var(--display); font-size:clamp(34px,4.5vw,58px);
+  font-weight:600; color:var(--cream); line-height:1.08;
+  margin-bottom:20px;
+}
+.kaffee-title em { font-style:italic; color:var(--gold-lt); }
+.kaffee-specs {
+  display:flex; justify-content:center; gap:clamp(28px,5vw,72px);
+  flex-wrap:wrap; margin-top:36px; max-width:780px;
+  margin-left:auto; margin-right:auto;
+}
+.kaffee-spec {
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  min-width:130px;
+}
+.kaffee-spec-n {
+  font-family:var(--data); font-size:clamp(36px,4vw,52px);
+  font-weight:900; color:var(--gold); line-height:1; letter-spacing:-0.02em;
+}
+.kaffee-spec-l {
+  font-family:var(--body); font-size:12px; color:var(--stone-lt);
+  letter-spacing:0.08em; text-transform:uppercase;
+}
+
+/* =========================================
    HOW TO USE
    ========================================= */
 .howto {
@@ -402,13 +507,19 @@ body.lang-de .en { display:none !important; }
 .woman-card:hover img { transform:scale(1.04); }
 .woman-overlay {
   position:absolute; bottom:0; left:0; right:0;
-  background:linear-gradient(to top, rgba(21,16,10,0.92) 0%, transparent 65%);
-  padding:clamp(16px,2vw,24px);
+  background:linear-gradient(to top,
+    rgba(21,16,10,0.98) 0%,
+    rgba(21,16,10,0.92) 40%,
+    rgba(21,16,10,0.75) 70%,
+    transparent 100%);
+  padding: clamp(20px,2.4vw,32px) clamp(16px,2vw,24px) clamp(16px,2vw,22px);
+  padding-top: clamp(48px,6vw,72px);
 }
 .woman-quote {
   font-family:var(--display); font-style:italic;
-  font-size:clamp(13px,1.1vw,15px); color:var(--cream); line-height:1.4;
+  font-size:clamp(13px,1.1vw,15px); color:var(--cream); line-height:1.45;
   margin-bottom:8px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 .woman-name {
   font-family:var(--data); font-size:11px; font-weight:700;
@@ -531,6 +642,9 @@ footer {
     aspect-ratio:auto;
   }
   .woman-card:first-child { grid-row:auto; }
+  .vctable-grid { grid-template-columns: 1.4fr 1fr 1fr; }
+  .vctable-cell { padding: 14px 10px; font-size:13px !important; }
+  .vctable-cell.lonviq { font-size:15px !important; }
 }
 @media (max-width:640px) {
   .statbar { flex-direction:column; gap:24px; }
@@ -715,6 +829,99 @@ footer {
   </div>
 </section>
 
+<!-- ============ VITAMIN C TABLE ============ -->
+<section class="vctable">
+  <div class="vctable-inner">
+    <p class="vctable-eye de">Vitamin C &mdash; bewusst formuliert</p>
+    <p class="vctable-eye en">Vitamin C &mdash; consciously formulated</p>
+    <h2 class="vctable-title de">Nicht jede Form Vitamin C ist gleich.</h2>
+    <h2 class="vctable-title en">Not every form of Vitamin C is equal.</h2>
+    <p class="vctable-sub de">
+      Wir haben Calciumascorbat statt L-Ascorbins&auml;ure gew&auml;hlt. Bewusst.
+      Aus drei Gr&uuml;nden &mdash; einer davon schmeckst du sofort.
+    </p>
+    <p class="vctable-sub en">
+      We chose calcium ascorbate instead of L-ascorbic acid. Deliberately.
+      For three reasons &mdash; one of which you can taste immediately.
+    </p>
+
+    <div class="vctable-grid">
+      <div class="vctable-row vctable-header">
+        <div class="vctable-cell"><span class="de">Eigenschaft</span><span class="en">Property</span></div>
+        <div class="vctable-cell"><span class="de">Marktstandard</span><span class="en">Market standard</span></div>
+        <div class="vctable-cell lonviq">LONVIQ</div>
+      </div>
+
+      <div class="vctable-row">
+        <div class="vctable-cell label"><span class="de">Form</span><span class="en">Form</span></div>
+        <div class="vctable-cell standard">L-Ascorbins&auml;ure</div>
+        <div class="vctable-cell lonviq"><strong>Calciumascorbat</strong></div>
+      </div>
+
+      <div class="vctable-row">
+        <div class="vctable-cell label"><span class="de">Geschmack</span><span class="en">Taste</span></div>
+        <div class="vctable-cell standard"><span class="de">sauer</span><span class="en">acidic</span></div>
+        <div class="vctable-cell lonviq"><span class="de"><strong>neutral</strong></span><span class="en"><strong>neutral</strong></span></div>
+      </div>
+
+      <div class="vctable-row">
+        <div class="vctable-cell label"><span class="de">Natrium</span><span class="en">Sodium</span></div>
+        <div class="vctable-cell standard"><span class="de">teils enthalten</span><span class="en">often present</span></div>
+        <div class="vctable-cell lonviq"><strong>0 mg</strong></div>
+      </div>
+
+      <div class="vctable-row">
+        <div class="vctable-cell label"><span class="de">Bonus</span><span class="en">Bonus</span></div>
+        <div class="vctable-cell standard">&mdash;</div>
+        <div class="vctable-cell lonviq"><strong>+23 mg</strong> <span class="de">Calcium</span><span class="en">Calcium</span></div>
+      </div>
+
+      <div class="vctable-row">
+        <div class="vctable-cell label"><span class="de">Dosierung</span><span class="en">Dose</span></div>
+        <div class="vctable-cell standard"><span class="de">oft 20&ndash;100 % NRW</span><span class="en">often 20&ndash;100 % NRV</span></div>
+        <div class="vctable-cell lonviq"><strong>250 % NRW</strong></div>
+      </div>
+    </div>
+
+    <p class="vctable-footnote de">
+      Calciumascorbat (E 302) ist die Calcium-Salzform der Ascorbins&auml;ure. Pharmakopisch standardisiert.
+      Vitamin C tr&auml;gt zur normalen Kollagenbildung bei (EU 432/2012).
+    </p>
+    <p class="vctable-footnote en">
+      Calcium ascorbate (E 302) is the calcium salt form of ascorbic acid. Pharmacopoeially standardised.
+      Vitamin C contributes to normal collagen formation (EU 432/2012).
+    </p>
+  </div>
+</section>
+
+<!-- ============ KAFFEE-OPTIMIERT BADGE ============ -->
+<section class="kaffee-badge">
+  <span class="kaffee-eye">Kaffee-optimiert</span>
+  <h2 class="kaffee-title de">
+    Nicht im Kaffee getarnt.<br>Im Kaffee <em>gedacht.</em>
+  </h2>
+  <h2 class="kaffee-title en">
+    Not hidden in your coffee.<br>Designed <em>for</em> it.
+  </h2>
+  <div class="kaffee-specs">
+    <div class="kaffee-spec">
+      <span class="kaffee-spec-n">80&deg;C</span>
+      <span class="kaffee-spec-l de">Max. Temperatur</span>
+      <span class="kaffee-spec-l en">Max. temperature</span>
+    </div>
+    <div class="kaffee-spec">
+      <span class="kaffee-spec-n">20s</span>
+      <span class="kaffee-spec-l de">Vollst&auml;ndige Aufl&ouml;sung</span>
+      <span class="kaffee-spec-l en">Fully dissolved</span>
+    </div>
+    <div class="kaffee-spec">
+      <span class="kaffee-spec-n">0</span>
+      <span class="kaffee-spec-l de">Eigengeschmack</span>
+      <span class="kaffee-spec-l en">Aftertaste</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============ HOW TO USE ============ -->
 <section class="howto">
   <div class="howto-inner">
@@ -727,28 +934,28 @@ footer {
         <div class="step">
           <span class="step-num">01</span>
           <div class="step-content">
-            <p class="step-title de">Morgens: 1 Messl&ouml;ffel (7,5 g)</p>
-            <p class="step-title en">Morning: 1 scoop (7.5 g)</p>
-            <p class="step-body de">In Kaffee, Smoothie oder Pflanzendrink einr&uuml;hren. L&ouml;st sich vollst&auml;ndig auf &mdash; kein Eigengeschmack.</p>
-            <p class="step-body en">Stir into coffee, smoothie or plant milk. Dissolves completely &mdash; no aftertaste.</p>
+            <p class="step-title de">T&auml;glich: 15 g (1 gestrichener Messl&ouml;ffel)</p>
+            <p class="step-title en">Daily: 15 g (1 level scoop)</p>
+            <p class="step-body de">In ca. 200&ndash;300 ml Kaffee, Smoothie, Pflanzendrink oder Joghurt einr&uuml;hren. Ca. 20 Sekunden umr&uuml;hren, bis sich das Pulver vollst&auml;ndig aufgel&ouml;st hat.</p>
+            <p class="step-body en">Stir into approx. 200&ndash;300 ml of coffee, smoothie, plant drink or yoghurt. Stir for about 20 seconds until the powder is fully dissolved.</p>
           </div>
         </div>
         <div class="step">
           <span class="step-num">02</span>
           <div class="step-content">
-            <p class="step-title de">Abends: 1 weiterer Messl&ouml;ffel</p>
-            <p class="step-title en">Evening: 1 more scoop</p>
-            <p class="step-body de">Gleiche Basis, gleiche Routine. 2 &times; t&auml;glich f&uuml;r 14.710 mg Kollagen pro Tag.</p>
-            <p class="step-body en">Same base, same routine. 2 &times; daily for 14,710 mg collagen per day.</p>
+            <p class="step-title de">Bei warmen Getr&auml;nken: max. 80 &deg;C</p>
+            <p class="step-title en">For hot drinks: max. 80 &deg;C</p>
+            <p class="step-body de">Kaffee ist die Lieblingsbasis &mdash; Smoothies und Pflanzendrinks funktionieren genauso. Cremige, deckende Tr&auml;ger geben das beste Ergebnis.</p>
+            <p class="step-body en">Coffee is the go-to base &mdash; smoothies and plant drinks work just as well. Creamy, opaque carriers give the cleanest result.</p>
           </div>
         </div>
         <div class="step">
           <span class="step-num">03</span>
           <div class="step-content">
-            <p class="step-title de">60 Tage Konsequenz (2 Packungen)</p>
-            <p class="step-title en">60 days consistency (2 packs)</p>
-            <p class="step-body de">Kein Wunder nach Woche 1. Dein K&ouml;rper braucht Zeit und konsistente Dosen. 60 Tage (2 Packungen) ist eine faire Chance &mdash; dann urteile.</p>
-            <p class="step-body en">No miracle after week 1. Your body needs time and consistent doses. 60 days (2 packs) is a fair shot &mdash; then judge.</p>
+            <p class="step-title de">30 Tage. Dann urteile.</p>
+            <p class="step-title en">30 days. Then judge.</p>
+            <p class="step-body de">Eine Packung = 30 Portionen = 30 Tage konsequente Routine. Kein Wunder nach Woche 1 &mdash; aber eine faire Chance f&uuml;r deinen K&ouml;rper.</p>
+            <p class="step-body en">One pack = 30 servings = 30 days of consistent routine. No miracle after week 1 &mdash; but a fair shot for your body.</p>
           </div>
         </div>
       </div>
@@ -817,8 +1024,8 @@ footer {
       <div class="woman-card">
         <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w5-outdoor.png" alt="Elena, 52" loading="lazy">
         <div class="woman-overlay">
-          <p class="woman-quote de">&bdquo;60 Tage Geduld. Danach habe ich geurteilt.&ldquo;</p>
-          <p class="woman-quote en">&ldquo;60 days of patience. Then I judged.&rdquo;</p>
+          <p class="woman-quote de">&bdquo;30 Tage Geduld. Danach habe ich geurteilt.&ldquo;</p>
+          <p class="woman-quote en">&ldquo;30 days of patience. Then I judged.&rdquo;</p>
           <p class="woman-name">Elena, 52</p>
         </div>
       </div>
