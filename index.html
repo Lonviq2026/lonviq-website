@@ -28,6 +28,20 @@
 
 <style>
 /* =========================================
+   MOBILE OVERFLOW FIX (global, lang-aware)
+   ========================================= */
+html, body { max-width:100%; overflow-x:hidden; }
+h1,h2,h3,h4,h5,h6,p,li,a,span,div,td,th { overflow-wrap:break-word; }
+[lang="de"] h1,[lang="de"] h2,[lang="de"] h3,[lang="de"] h4,
+[lang="de"] p,[lang="de"] li {
+  -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:8 4 4;
+}
+img,video,iframe,table { max-width:100%; height:auto; }
+/* Vit-C grid: pozwól kolumnom zwężać się i łamać długie złożenia */
+.vctable-grid > * { min-width:0; }
+.vctable-cell { overflow-wrap:anywhere; -webkit-hyphens:auto; hyphens:auto; }
+
+/* =========================================
    TOKENS — light palette (cream bg, espresso text)
    ========================================= */
 :root {
@@ -301,39 +315,78 @@ body.lang-de .en { display:none !important; }
   font-weight:600; color:var(--text); line-height:1.1;
   margin-bottom:48px; max-width:600px;
 }
-.comp-grid {
-  display:grid; grid-template-columns:1fr 1fr; gap:3px;
-  max-width:680px;
+/* ---- Dosis-Reveal (animowana sekcja dawki) ---- */
+.dose-sub {
+  font-family:var(--body); font-size:clamp(15px,1.4vw,17px);
+  color:var(--text-2); line-height:1.6; max-width:48ch; margin:-30px 0 0;
 }
-.comp-col {
-  padding: clamp(28px,4vw,48px) clamp(24px,3vw,36px);
+.dose-grid {
+  display:grid; grid-template-columns:1fr 1.05fr;
+  gap:clamp(32px,6vw,80px); align-items:center; margin-top:clamp(40px,5vw,60px);
 }
-.comp-col.col-left { background:var(--cream3); }
-.comp-col.col-right { background:var(--espresso); }
-.comp-label {
-  font-family:var(--body); font-size:11px; font-weight:700;
-  letter-spacing:0.2em; text-transform:uppercase; margin-bottom:12px;
+.dose-product { display:flex; justify-content:center; align-items:center; perspective:1200px; }
+.dose-product img {
+  width:min(420px,90%); height:auto; display:block;
+  filter:drop-shadow(0 30px 50px rgba(21,16,10,0.22));
+  transform-style:preserve-3d; will-change:transform;
+  animation:doseFloat 7s ease-in-out infinite;
+  transition:transform 0.25s cubic-bezier(.2,.8,.2,1);
 }
-.col-left .comp-label { color:var(--stone); }
-.col-right .comp-label { color:var(--gold-lt); }
-.comp-number {
-  font-family:var(--display); font-size:clamp(56px,7.5vw,92px);
-  font-weight:600; line-height:1; letter-spacing:-0.02em;
+@keyframes doseFloat { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-14px);} }
+
+.meters { display:flex; gap:clamp(20px,4vw,46px); align-items:flex-end; justify-content:center; position:relative; }
+.meter { display:flex; flex-direction:column; align-items:center; gap:16px; }
+.meter-label {
+  font-family:var(--body); text-transform:uppercase; letter-spacing:0.14em;
+  font-size:13px; font-weight:700; color:var(--stone); text-align:center;
 }
-.col-left .comp-number { color:var(--espresso); }
-.col-right .comp-number { color:var(--gold-lt); }
-.comp-unit {
-  font-family:var(--body); font-size:15px; margin-top:4px;
+.meter--hero .meter-label { color:var(--terra-dk); }
+
+.tube {
+  position:relative; width:clamp(64px,9vw,96px); height:clamp(220px,34vw,320px);
+  border:1px solid rgba(21,16,10,0.16); border-radius:14px;
+  background:linear-gradient(180deg,rgba(21,16,10,0.035),rgba(21,16,10,0)); overflow:hidden;
 }
-.col-left .comp-unit { color:var(--stone); }
-.col-right .comp-unit { color:var(--cream2); }
-.comp-diff {
-  font-family:var(--display); font-style:italic; font-size:clamp(22px,2.5vw,30px);
-  font-weight:600; color:var(--cream); margin-top:20px; display:block;
+.meter--hero .tube { border-color:rgba(21,16,10,0.32); }
+.tube::after {
+  content:""; position:absolute; inset:0;
+  background-image:repeating-linear-gradient(0deg,transparent 0 24px,rgba(21,16,10,0.10) 24px 25px);
+  pointer-events:none;
 }
-.comp-note {
-  font-family:var(--body); font-size:14px; color:var(--cream2);
-  margin-top:8px; line-height:1.5;
+.fill { position:absolute; left:0; right:0; bottom:0; height:0%; transition:height 1.9s cubic-bezier(.16,1,.3,1); }
+.fill--std { background:linear-gradient(180deg,var(--terra),rgba(175,90,60,0.78)); }
+.fill--lon { background:linear-gradient(180deg,var(--gold),var(--gold-dk)); box-shadow:inset 0 2px 0 rgba(255,255,255,0.32); }
+.grain { position:absolute; width:3px; height:3px; border-radius:50%; background:rgba(21,16,10,0.5); opacity:0; animation:doseRise 3.4s linear infinite; }
+@keyframes doseRise { 0%{transform:translateY(0);opacity:0;} 12%{opacity:.7;} 100%{transform:translateY(-150px);opacity:0;} }
+
+.tube-wrap { position:relative; }
+.std-mark { position:absolute; left:0; right:0; border-top:1.5px dashed rgba(21,16,10,0.45); opacity:0; transition:opacity 0.6s ease 0.9s; pointer-events:none; }
+.std-mark span {
+  position:absolute; left:50%; bottom:6px; transform:translateX(-50%);
+  font-family:var(--body); font-size:12px; letter-spacing:0.06em; color:var(--text-2);
+  white-space:nowrap; background:var(--cream2); padding:2px 8px; border-radius:4px;
+  border:1px solid rgba(21,16,10,0.16);
+}
+.comparison.is-on .std-mark { opacity:1; }
+
+.meter-num { font-family:var(--display); font-weight:600; font-size:clamp(30px,4vw,46px); line-height:1; letter-spacing:-0.01em; color:var(--espresso); }
+.meter--hero .meter-num { color:var(--gold-dk); }
+.meter-num .u { font-family:var(--body); font-size:0.38em; font-weight:600; color:var(--stone); margin-left:4px; }
+
+.delta {
+  position:absolute; top:50%; left:50%; transform:translate(-50%,-50%) scale(.6);
+  background:var(--espresso); color:var(--gold);
+  font-family:var(--display); font-style:italic; font-weight:600;
+  font-size:clamp(24px,3vw,36px); letter-spacing:0.01em;
+  padding:10px 22px; border-radius:100px; box-shadow:0 16px 34px rgba(21,16,10,0.22);
+  opacity:0; transition:opacity 0.5s ease, transform 0.6s cubic-bezier(.34,1.56,.64,1); z-index:3; white-space:nowrap;
+}
+.delta small { display:block; font-family:var(--body); font-style:normal; font-size:0.34em; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; text-align:center; margin-top:2px; color:var(--cream); }
+.comparison.is-on .delta { opacity:1; transform:translate(-50%,-50%) scale(1); transition-delay:1.6s; }
+
+@media (prefers-reduced-motion:reduce) {
+  .dose-product img, .grain { animation:none; }
+  .fill, .delta { transition:none; }
 }
 
 /* =========================================
@@ -640,7 +693,8 @@ footer {
   .hero { grid-template-columns:1fr; min-height:auto; }
   .hero-img { height:55vw; }
   .heroes-grid { grid-template-columns:1fr; gap:2px; }
-  .comp-grid { grid-template-columns:1fr; max-width:360px; }
+  .dose-grid { grid-template-columns:1fr; gap:48px; }
+  .dose-product { order:2; }
   .howto-inner { grid-template-columns:1fr; }
   .howto-visual { order:-1; }
   .about-inner { grid-template-columns:1fr; }
@@ -812,27 +866,40 @@ footer {
 </section>
 
 <!-- ============ COMPARISON ============ -->
-<section class="comparison">
+<section class="comparison" id="doseSection">
   <div class="comparison-inner">
-    <p class="section-eye de">Dosierung</p>
-    <p class="section-eye en">Dosage</p>
+    <p class="section-eye de">Die Dosis &mdash; sichtbar gemacht</p>
+    <p class="section-eye en">The dose &mdash; made visible</p>
     <h2 class="section-title de">10.000 mg ist der Standard.<br>Wir fanden das nicht genug.</h2>
     <h2 class="section-title en">10,000 mg is the standard.<br>We found that insufficient.</h2>
+    <p class="dose-sub de">Keine Behauptung, ein Ma&szlig;. Jede Tagesportion enth&auml;lt 14.710 mg Kollagenpeptide Typ I &amp; III &mdash; 47 % &uuml;ber dem, was der Markt &bdquo;volle Dosis&ldquo; nennt.</p>
+    <p class="dose-sub en">Not a claim &mdash; a measurement. Each daily serving contains 14,710 mg collagen peptides Type I &amp; III &mdash; 47 % above what the market calls a &ldquo;full dose&rdquo;.</p>
 
-    <div class="comp-grid">
-      <div class="comp-col col-left">
-        <p class="comp-label de">Marktstandard</p>
-        <p class="comp-label en">Market standard</p>
-        <div class="comp-number">10.000</div>
-        <p class="comp-unit">mg</p>
+    <div class="dose-grid">
+      <div class="dose-product">
+        <img id="doseTilt" src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png" alt="LONVIQ Kollagen Beauty 450 g Doypack">
       </div>
-      <div class="comp-col col-right">
-        <p class="comp-label">LONVIQ</p>
-        <div class="comp-number">14.710</div>
-        <p class="comp-unit">mg</p>
-        <span class="comp-diff">+47 %</span>
-        <p class="comp-note de">47 % mehr Kollagen pro Portion &mdash; weil halbherzige Dosen keine Strategie sind.</p>
-        <p class="comp-note en">47 % more collagen per serving &mdash; because half-measures aren&rsquo;t a strategy.</p>
+
+      <div class="meters">
+        <div class="meter">
+          <div class="tube"><div class="fill fill--std" id="doseFillStd"></div></div>
+          <div class="meter-num"><span id="doseNumStd">0</span><span class="u">mg</span></div>
+          <p class="meter-label de">Marktstandard</p>
+          <p class="meter-label en">Market standard</p>
+        </div>
+
+        <div class="meter meter--hero">
+          <div class="tube-wrap">
+            <div class="tube"><div class="fill fill--lon" id="doseFillLon"></div></div>
+            <div class="std-mark" id="doseStdMark">
+              <span><span class="de">Standard 10.000 mg</span><span class="en">Standard 10,000 mg</span></span>
+            </div>
+          </div>
+          <div class="meter-num"><span id="doseNumLon">0</span><span class="u">mg</span></div>
+          <p class="meter-label">LONVIQ</p>
+        </div>
+
+        <div class="delta">+47 %<small><span class="de">mehr Kollagen</span><span class="en">more collagen</span></small></div>
       </div>
     </div>
   </div>
@@ -1105,11 +1172,11 @@ footer {
     <a href="https://www.amazon.de/s?k=lonviq" target="_blank" rel="noopener">Amazon.de</a>
   </nav>
   <p class="footer-copy de">
-    &copy; 2026 MOLIS Sp. z o.o., ul. Topolowa 26, 55-080 Smolec, Polen &mdash;
+    &copy; 2026 MOLIS Sp. z o.o., ul. Akacjowa 2, 55-080 Smolec, Polen &mdash;
     NIP PL8971875550 &mdash; Alle Wirkaussagen gem&auml;&szlig; EU-Verordnung Nr.&nbsp;432/2012
   </p>
   <p class="footer-copy en">
-    &copy; 2026 MOLIS Sp. z o.o., ul. Topolowa 26, 55-080 Smolec, Poland &mdash;
+    &copy; 2026 MOLIS Sp. z o.o., ul. Akacjowa 2, 55-080 Smolec, Poland &mdash;
     NIP PL8971875550 &mdash; All health claims pursuant to EU Regulation No.&nbsp;432/2012
   </p>
 </footer>
@@ -1121,6 +1188,79 @@ function setLang(l) {
   document.getElementById('btn-en').classList.toggle('active', l==='en');
   document.documentElement.lang = l;
 }
+</script>
+
+<script>
+/* ---- Dosis-Reveal: liczniki + napełnianie + tilt ---- */
+(function(){
+  var STD=10000, LON=14710;
+  var sec=document.getElementById('doseSection');
+  if(!sec) return;
+  var fillStd=document.getElementById('doseFillStd');
+  var fillLon=document.getElementById('doseFillLon');
+  var numStd=document.getElementById('doseNumStd');
+  var numLon=document.getElementById('doseNumLon');
+  var stdMark=document.getElementById('doseStdMark');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var stdPct=(STD/LON)*100, done=false;
+
+  function locale(){
+    var de=sec.querySelector('.de');
+    return (de && getComputedStyle(de).display!=='none') ? 'de-DE' : 'en-US';
+  }
+  function fmt(n){ return Math.round(n).toLocaleString(locale()); }
+
+  function countUp(el,target,dur){
+    if(reduce){ el.textContent=fmt(target); return; }
+    var t0=null;
+    function step(ts){
+      if(!t0)t0=ts;
+      var p=Math.min((ts-t0)/dur,1), e=1-Math.pow(1-p,3);
+      el.textContent=fmt(target*e);
+      if(p<1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  function reformat(){ if(done){ numStd.textContent=fmt(STD); numLon.textContent=fmt(LON); } }
+
+  function addGrains(){
+    if(reduce) return;
+    for(var i=0;i<7;i++){
+      var g=document.createElement('div'); g.className='grain';
+      g.style.left=(8+Math.random()*84)+'%'; g.style.bottom='6px';
+      g.style.animationDelay=(Math.random()*3.4)+'s';
+      fillLon.appendChild(g);
+    }
+  }
+  function run(){
+    sec.classList.add('is-on');
+    stdMark.style.bottom=stdPct+'%';
+    requestAnimationFrame(function(){ fillStd.style.height=stdPct+'%'; fillLon.style.height='100%'; });
+    countUp(numStd,STD,1900); countUp(numLon,LON,2100); addGrains();
+    setTimeout(function(){ done=true; reformat(); },2200);
+  }
+
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ run(); io.disconnect(); } }); },{threshold:.4});
+    io.observe(sec);
+  } else { run(); }
+
+  /* przelicz format liczb po przełączeniu języka */
+  document.addEventListener('click',function(e){
+    if(e.target.closest && e.target.closest('.lang-btn')) setTimeout(reformat,30);
+  });
+
+  /* tilt renderu od kursora */
+  var img=document.getElementById('doseTilt'), wrap=img?img.parentElement:null;
+  if(img && !reduce){
+    wrap.addEventListener('mousemove',function(ev){
+      var r=wrap.getBoundingClientRect();
+      var x=(ev.clientX-r.left)/r.width-.5, y=(ev.clientY-r.top)/r.height-.5;
+      img.style.transform='rotateY('+(x*10)+'deg) rotateX('+(-y*10)+'deg) translateY(-6px)';
+    });
+    wrap.addEventListener('mouseleave',function(){ img.style.transform=''; });
+  }
+})();
 </script>
 
 </body>
