@@ -7,6 +7,8 @@
 <meta name="description" content="LONVIQ Kollagen Beauty: 14.710 mg hydrolysierte Rinderkollagenpeptide Typ I &amp; III, Vitamin C (Calciumascorbat), Zink, Biotin. Volle Dosis. Ohne Kompromisse. Amazon.de.">
 <meta name="keywords" content="kollagen pulver, kollagenpeptide, kollagen beauty, 14710mg kollagen, bovines kollagen, vitamin c biotin zink, nahrungsergänzungsmittel, LONVIQ">
 <link rel="canonical" href="https://lonviq.com/">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#F0E7CE">
 <meta property="og:title" content="LONVIQ Kollagen Beauty &mdash; Kein Zauber. Nur Zutaten.">
 <meta property="og:description" content="14.710 mg hydrolysierte Kollagenpeptide. Mit Vitamin C, Zink und Biotin. Volle Dosis. Keine Abk\u00fcrzungen.">
 <meta property="og:image" content="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png">
@@ -23,23 +25,33 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C, Zink und Biotin","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://lonviq.com/","priceCurrency":"EUR"}}
+{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","image":"https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C (Calciumascorbat), Zink und Biotin. 450 g Pulver, 30 Portionen.","sku":"LONVIQ-KB-450","gtin13":"5908119889804","category":"Nahrungsergänzungsmittel","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","streetAddress":"ul. Akacjowa 2","postalCode":"55-080","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://www.amazon.de/s?k=lonviq","priceCurrency":"EUR"}}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"LONVIQ","url":"https://lonviq.com/","logo":"https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/lonviq-logo.png","sameAs":["https://www.amazon.de/s?k=lonviq"]}
 </script>
 
 <style>
 /* =========================================
-   MOBILE OVERFLOW FIX (global, lang-aware)
+   MOBILE OVERFLOW FIX
    ========================================= */
 html, body { max-width:100%; overflow-x:hidden; }
+/* Sieć bezpieczeństwa: łam słowo TYLKO gdy realnie nie mieści się w kontenerze
+   (bez wstawiania myślnika) — chroni przed overflow, nie psuje nagłówków. */
 h1,h2,h3,h4,h5,h6,p,li,a,span,div,td,th { overflow-wrap:break-word; }
-[lang="de"] h1,[lang="de"] h2,[lang="de"] h3,[lang="de"] h4,
-[lang="de"] p,[lang="de"] li {
-  -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:8 4 4;
-}
 img,video,iframe,table { max-width:100%; height:auto; }
-/* Vit-C grid: pozwól kolumnom zwężać się i łamać długie złożenia */
 .vctable-grid > * { min-width:0; }
-.vctable-cell { overflow-wrap:anywhere; -webkit-hyphens:auto; hyphens:auto; }
+
+/* Hyphenacja (z myślnikiem) WYŁĄCZNIE na wąskich ekranach i tylko dla tekstu
+   ciągłego oraz komórek tabeli — NIGDY dla nagłówków i nie na desktopie. */
+@media (max-width:640px){
+  [lang="de"] p,
+  [lang="de"] li,
+  [lang="de"] .vctable-cell {
+    -webkit-hyphens:auto; hyphens:auto; hyphenate-limit-chars:8 4 4;
+  }
+  .vctable-cell { overflow-wrap:anywhere; }
+}
 
 /* =========================================
    TOKENS — light palette (cream bg, espresso text)
@@ -450,6 +462,10 @@ body.lang-de .en { display:none !important; }
 .vctable-cell.lonviq strong {
   color:var(--terra-dk); font-weight:700; font-style:normal;
 }
+.vctable-cell.lonviq .bonus-suffix {
+  font-family:var(--body); font-style:normal; font-weight:500;
+  font-size:0.72em; color:var(--stone); letter-spacing:0.01em; margin-left:2px;
+}
 .vctable-footnote {
   font-family:var(--body); font-size:11px; color:var(--stone);
   margin-top:18px; line-height:1.5;
@@ -827,7 +843,7 @@ footer {
         <span class="hero-card-n">250</span>
         <span class="hero-card-u">%</span>
       </div>
-      <span class="hero-card-label de">NRW Vitamin C (als Calciumascorbat)</span>
+      <span class="hero-card-label de">NRV Vitamin C (als Calciumascorbat)</span>
       <span class="hero-card-label en">NRV Vitamin C (as calcium ascorbate)</span>
       <p class="hero-card-claim de">Vitamin C tr&auml;gt zur normalen Kollagenbildung bei.*</p>
       <p class="hero-card-claim en">Vitamin C contributes to normal collagen formation.*</p>
@@ -841,7 +857,7 @@ footer {
         <span class="hero-card-n">500</span>
         <span class="hero-card-u">%</span>
       </div>
-      <span class="hero-card-label de">NRW Biotin</span>
+      <span class="hero-card-label de">NRV Biotin</span>
       <span class="hero-card-label en">NRV Biotin</span>
       <p class="hero-card-claim de">Biotin tr&auml;gt zur Erhaltung normaler Haut und normaler Haare bei.*</p>
       <p class="hero-card-claim en">Biotin contributes to maintenance of normal skin and normal hair.*</p>
@@ -855,7 +871,7 @@ footer {
         <span class="hero-card-n">100</span>
         <span class="hero-card-u">%</span>
       </div>
-      <span class="hero-card-label de">NRW Zink</span>
+      <span class="hero-card-label de">NRV Zink</span>
       <span class="hero-card-label en">NRV Zinc</span>
       <p class="hero-card-claim de">Zink tr&auml;gt zur Erhaltung normaler Haut bei.*</p>
       <p class="hero-card-claim en">Zinc contributes to maintenance of normal skin.*</p>
@@ -949,13 +965,13 @@ footer {
       <div class="vctable-row">
         <div class="vctable-cell label"><span class="de">Bonus</span><span class="en">Bonus</span></div>
         <div class="vctable-cell standard">&mdash;</div>
-        <div class="vctable-cell lonviq"><strong>+23 mg</strong> <span class="de">Calcium</span><span class="en">Calcium</span></div>
+        <div class="vctable-cell lonviq"><strong>+23 mg</strong> <span class="bonus-suffix">Calcium</span></div>
       </div>
 
       <div class="vctable-row">
         <div class="vctable-cell label"><span class="de">Dosierung</span><span class="en">Dose</span></div>
-        <div class="vctable-cell standard"><span class="de">oft 20&ndash;100 % NRW</span><span class="en">often 20&ndash;100 % NRV</span></div>
-        <div class="vctable-cell lonviq"><strong>250 % NRW</strong></div>
+        <div class="vctable-cell standard"><span class="de">oft 20&ndash;100 % NRV</span><span class="en">often 20&ndash;100 % NRV</span></div>
+        <div class="vctable-cell lonviq"><strong>250 % NRV</strong></div>
       </div>
     </div>
 
