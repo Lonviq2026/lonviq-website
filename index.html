@@ -11,7 +11,7 @@
 <meta name="theme-color" content="#F0E7CE">
 <meta property="og:title" content="LONVIQ Kollagen Beauty &mdash; Kein Zauber. Nur Zutaten.">
 <meta property="og:description" content="14.710 mg hydrolysierte Kollagenpeptide. Mit Vitamin C, Zink und Biotin. Volle Dosis. Keine Abk\u00fcrzungen.">
-<meta property="og:image" content="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png">
+<meta property="og:image" content="https://lonviq.com/product-stilllife.png">
 <meta property="og:type" content="product">
 <meta property="og:url" content="https://lonviq.com/">
 <meta property="og:locale" content="de_DE">
@@ -19,16 +19,16 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LONVIQ Kollagen Beauty &mdash; Kein Zauber. Nur Zutaten.">
 <meta name="twitter:description" content="14.710 mg Kollagenpeptide. Kein Zauber. Nur Zutaten.">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png">
+<meta name="twitter:image" content="https://lonviq.com/product-stilllife.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","image":"https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C (Calciumascorbat), Zink und Biotin. 450 g Pulver, 30 Portionen.","sku":"LONVIQ-KB-450","gtin13":"5908119889804","category":"Nahrungsergänzungsmittel","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","streetAddress":"ul. Akacjowa 2","postalCode":"55-080","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://www.amazon.de/s?k=lonviq","priceCurrency":"EUR"}}
+{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","image":"https://lonviq.com/product-stilllife.png","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C (Calciumascorbat), Zink und Biotin. 450 g Pulver, 30 Portionen.","sku":"LONVIQ-KB-450","gtin13":"5908119889804","category":"Nahrungsergänzungsmittel","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","streetAddress":"ul. Akacjowa 2","postalCode":"55-080","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://www.amazon.de/s?k=lonviq","priceCurrency":"EUR"}}
 </script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Organization","name":"LONVIQ","url":"https://lonviq.com/","logo":"https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/lonviq-logo.png","sameAs":["https://www.amazon.de/s?k=lonviq"]}
+{"@context":"https://schema.org","@type":"Organization","name":"LONVIQ","url":"https://lonviq.com/","logo":"https://lonviq.com/lonviq-logo.png","sameAs":["https://www.amazon.de/s?k=lonviq"]}
 </script>
 
 <style>
@@ -123,6 +123,36 @@ body.lang-de .en { display:none !important; }
 .footer-logo-link { display:flex; align-items:center; }
 .footer-logo-img { height:28px; width:auto; display:block; }
 .nav-right { display:flex; align-items:center; gap:20px; }
+.nav-link {
+  font-family: var(--body); font-size:12px; font-weight:700;
+  letter-spacing:0.1em; text-transform:uppercase; text-decoration:none;
+  color: var(--stone); padding:5px 2px;
+  border-bottom:1px solid transparent; transition: color .2s, border-color .2s;
+}
+.nav-link:hover { color: var(--gold); border-bottom-color: var(--gold); }
+
+/* Journal teaser (internal links to blog) */
+.journal-teaser {
+  margin-top: 72px; padding-top: 32px;
+  border-top: 1px solid rgba(21,16,10,0.12);
+}
+.journal-eye {
+  font-family: var(--body); font-size:11px; font-weight:700;
+  letter-spacing:0.18em; text-transform:uppercase;
+  color: var(--gold-dk); margin:0 0 18px;
+}
+.journal-links { display:flex; flex-wrap:wrap; gap:14px 32px; }
+.journal-link {
+  font-family: var(--body); font-size:.95rem; font-weight:500;
+  color: var(--stone); text-decoration:none;
+  border-bottom:1px solid rgba(21,16,10,0.18);
+  padding-bottom:2px; transition: color .2s, border-color .2s;
+}
+.journal-link:hover { color: var(--terra); border-bottom-color: var(--terra); }
+@media (max-width: 720px) {
+  .journal-teaser { margin-top: 48px; }
+  .journal-links { flex-direction:column; gap:12px; }
+}
 .lang-btn {
   background: none; border: 1px solid rgba(21,16,10,0.25);
   color: var(--stone); font-family: var(--body); font-size:12px;
@@ -742,10 +772,14 @@ footer {
 <!-- ============ NAV ============ -->
 <nav class="nav">
   <a href="/" class="nav-logo-link">
-    <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/lonviq-logo.png"
+    <img src="/lonviq-logo.png"
          alt="LONVIQ" class="nav-logo-img" height="36">
   </a>
   <div class="nav-right">
+    <a class="nav-link" href="/blog/">
+      <span class="de">Blog</span>
+      <span class="en">Blog</span>
+    </a>
     <button class="lang-btn active" id="btn-de" onclick="setLang('de')">DE</button>
     <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
     <a class="nav-cta" href="https://www.amazon.de/s?k=lonviq" target="_blank" rel="noopener">
@@ -786,7 +820,7 @@ footer {
   </div>
 
   <div class="hero-img">
-    <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-lifestyle.png"
+    <img src="/product-lifestyle.png"
          alt="LONVIQ Kollagen Beauty im Alltag" loading="eager">
     <div class="hero-img-overlay"></div>
   </div>
@@ -893,7 +927,7 @@ footer {
 
     <div class="dose-grid">
       <div class="dose-product">
-        <img id="doseTilt" src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png" alt="LONVIQ Kollagen Beauty 450 g Doypack">
+        <img id="doseTilt" src="/product-stilllife.png" alt="LONVIQ Kollagen Beauty 450 g Doypack">
       </div>
 
       <div class="meters">
@@ -916,6 +950,20 @@ footer {
         </div>
 
         <div class="delta">+47 %<small><span class="de">mehr Kollagen</span><span class="en">more collagen</span></small></div>
+      </div>
+    </div>
+
+    <!-- Journal: internal crawl path to blog -->
+    <div class="journal-teaser">
+      <p class="journal-eye de">Aus dem Journal</p>
+      <p class="journal-eye en">From the Journal</p>
+      <div class="journal-links">
+        <a class="journal-link de" href="/blog/wie-viel-kollagen-pro-tag.html">Wie viel Kollagen pro Tag? &rarr;</a>
+        <a class="journal-link en" href="/blog/how-much-collagen-per-day.html">How much collagen per day? &rarr;</a>
+        <a class="journal-link de" href="/blog/marines-vs-bovines-kollagen.html">Marines vs. bovines Kollagen &rarr;</a>
+        <a class="journal-link en" href="/blog/marine-vs-bovine-collagen.html">Marine vs. bovine collagen &rarr;</a>
+        <a class="journal-link de" href="/blog/wann-sieht-man-kollagen-ergebnisse.html">Wann sieht man Ergebnisse? &rarr;</a>
+        <a class="journal-link en" href="/blog/when-do-you-see-collagen-results.html">When do you see results? &rarr;</a>
       </div>
     </div>
   </div>
@@ -1053,9 +1101,9 @@ footer {
       </div>
     </div>
     <div class="howto-visual">
-      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-preparation.png"
+      <img src="/product-preparation.png"
            alt="LONVIQ Kollagen in Kaffee einrühren" loading="lazy">
-      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-usage.png"
+      <img src="/product-usage.png"
            alt="LONVIQ Kollagen Beauty Anwendung" loading="lazy" style="margin-top:3px;">
       <p class="howto-caption de">Kein Shaker. Kein Aufwand. Nur Routine.</p>
       <p class="howto-caption en">No shaker. No effort. Just routine.</p>
@@ -1082,7 +1130,7 @@ footer {
     </div>
     <div class="women-grid">
       <div class="woman-card">
-        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w1-window.png" alt="Anna, 32" loading="lazy">
+        <img src="/w1-window.png" alt="Anna, 32" loading="lazy">
         <div class="woman-overlay">
           <p class="woman-quote de">&bdquo;Ich wei&szlig; jetzt, was in meinem K&ouml;rper landet. Das z&auml;hlt.&ldquo;</p>
           <p class="woman-quote en">&ldquo;I now know what goes into my body. That matters.&rdquo;</p>
@@ -1090,7 +1138,7 @@ footer {
         </div>
       </div>
       <div class="woman-card">
-        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w2-kitchen.png" alt="Petra, 47" loading="lazy">
+        <img src="/w2-kitchen.png" alt="Petra, 47" loading="lazy">
         <div class="woman-overlay">
           <p class="woman-quote de">&bdquo;Einfach in den Kaffee &mdash; fertig.&ldquo;</p>
           <p class="woman-quote en">&ldquo;Just into my coffee &mdash; done.&rdquo;</p>
@@ -1098,7 +1146,7 @@ footer {
         </div>
       </div>
       <div class="woman-card">
-        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w3-table.png" alt="Maria, 34" loading="lazy">
+        <img src="/w3-table.png" alt="Maria, 34" loading="lazy">
         <div class="woman-overlay">
           <p class="woman-quote de">&bdquo;Endlich eine Marke ohne Hokuspokus.&ldquo;</p>
           <p class="woman-quote en">&ldquo;Finally a brand without the hype.&rdquo;</p>
@@ -1106,7 +1154,7 @@ footer {
         </div>
       </div>
       <div class="woman-card">
-        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w4-sofa.png" alt="Sophie, 38" loading="lazy">
+        <img src="/w4-sofa.png" alt="Sophie, 38" loading="lazy">
         <div class="woman-overlay">
           <p class="woman-quote de">&bdquo;Die Dosis hat mich &uuml;berzeugt, nicht das Design.&ldquo;</p>
           <p class="woman-quote en">&ldquo;The dose convinced me, not the packaging.&rdquo;</p>
@@ -1114,7 +1162,7 @@ footer {
         </div>
       </div>
       <div class="woman-card">
-        <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/w5-outdoor.png" alt="Elena, 52" loading="lazy">
+        <img src="/w5-outdoor.png" alt="Elena, 52" loading="lazy">
         <div class="woman-overlay">
           <p class="woman-quote de">&bdquo;30 Tage Geduld. Danach habe ich geurteilt.&ldquo;</p>
           <p class="woman-quote en">&ldquo;30 days of patience. Then I judged.&rdquo;</p>
@@ -1129,7 +1177,7 @@ footer {
 <section class="about">
   <div class="about-inner">
     <div class="about-img">
-      <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/product-stilllife.png"
+      <img src="/product-stilllife.png"
            alt="LONVIQ Kollagen Beauty 450g Doypack" loading="lazy">
     </div>
     <div class="about-text">
@@ -1177,10 +1225,12 @@ footer {
 <!-- ============ FOOTER ============ -->
 <footer>
   <a href="/" class="footer-logo-link">
-    <img src="https://raw.githubusercontent.com/Lonviq2026/lonviq-website/main/lonviq-logo.png"
+    <img src="/lonviq-logo.png"
          alt="LONVIQ" class="footer-logo-img" height="28">
   </a>
   <nav class="footer-links">
+    <a href="/blog/" class="de">Blog</a>
+    <a href="/blog/index-en.html" class="en">Blog</a>
     <a href="/imprint.html" class="de">Impressum</a>
     <a href="/imprint.html" class="en">Imprint</a>
     <a href="/privacy.html" class="de">Datenschutz</a>
