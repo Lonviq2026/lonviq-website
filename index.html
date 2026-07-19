@@ -25,7 +25,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
 
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","image":"https://lonviq.com/product-stilllife.png","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C (Calciumascorbat), Zink und Biotin. 450 g Pulver, 30 Portionen.","sku":"LONVIQ-KB-450","gtin13":"5908119889804","category":"Nahrungsergänzungsmittel","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","streetAddress":"ul. Akacjowa 2","postalCode":"55-080","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://www.amazon.de/s?k=lonviq","priceCurrency":"EUR"}}
+{"@context":"https://schema.org","@type":"Product","name":"LONVIQ Kollagen Beauty","image":"https://lonviq.com/product-stilllife.png","description":"14.710 mg hydrolysierte Rinderkollagenpeptide Typ I & III mit Vitamin C (Calciumascorbat), Zink und Biotin. 450 g Pulver, 30 Portionen.","sku":"LONVIQ-KB-450","gtin13":"5908119889804","category":"Nahrungsergänzungsmittel","brand":{"@type":"Brand","name":"LONVIQ"},"manufacturer":{"@type":"Organization","name":"MOLIS Sp. z o.o.","address":{"@type":"PostalAddress","streetAddress":"ul. Akacjowa 2","postalCode":"55-080","addressLocality":"Smolec","addressCountry":"PL"}},"offers":{"@type":"Offer","availability":"https://schema.org/InStock","url":"https://www.amazon.de/s?k=lonviq","priceCurrency":"EUR","price":"36.95","priceValidUntil":"2027-12-31"}}
 </script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"LONVIQ","url":"https://lonviq.com/","logo":"https://lonviq.com/lonviq-logo.png","sameAs":["https://www.amazon.de/s?k=lonviq"]}
@@ -98,6 +98,7 @@ body {
   background: var(--bg);
   color: var(--text);
   line-height: 1.65;
+  font-variant-numeric: lining-nums;
   -webkit-font-smoothing: antialiased;
 }
 img { max-width:100%; display:block; }
@@ -735,6 +736,13 @@ footer {
 /* =========================================
    RESPONSIVE
    ========================================= */
+/* Big display numbers: lining + tabular for clean vertical alignment */
+.hero-card-n, .hero-card-u, .kaffee-spec-n, .step-num,
+.vctable-cell.lonviq, .vctable-cell.standard {
+  font-variant-numeric: lining-nums tabular-nums;
+  font-feature-settings: 'lnum' 1, 'tnum' 1;
+}
+
 @media (max-width:900px) {
   .hero { grid-template-columns:1fr; min-height:auto; }
   .hero-img { height:55vw; }
@@ -751,12 +759,28 @@ footer {
     aspect-ratio:auto;
   }
   .woman-card:first-child { grid-row:auto; }
-  .vctable-grid { grid-template-columns: 1.4fr 1fr 1fr; }
-  .vctable-cell { padding: 14px 10px; font-size:13px !important; }
+  .vctable-grid { grid-template-columns: 1.3fr 1fr 1fr; }
+  .vctable-cell { padding: 14px 9px; font-size:13px !important; }
   .vctable-cell.lonviq { font-size:15px !important; }
+  /* headers must not hyphenate into 3 lines */
+  .vctable-header .vctable-cell {
+    letter-spacing:0.04em; font-size:9.5px !important;
+    hyphens:none; -webkit-hyphens:none; overflow-wrap:normal; word-break:keep-all;
+  }
+  /* keep "+23 mg" from splitting mid-value */
+  .vctable-cell.lonviq strong { white-space:nowrap; }
+  .vctable-cell.lonviq .bonus-suffix { white-space:nowrap; }
+
+  /* consistent mobile rhythm: every section intro (eyebrow + title) is
+     centred so the page reads uniformly; body content — tables, the
+     founder story, step lists — keeps its natural left alignment */
+  .section-eye, .section-title,
+  .vctable-eye, .vctable-title { text-align:center; }
+  .section-title, .vctable-title { max-width:none; margin-left:auto; margin-right:auto; }
+  .howto-text .steps { text-align:left; }
 }
 @media (max-width:640px) {
-  .statbar { flex-direction:column; gap:24px; }
+  .statbar { flex-direction:column; gap:24px; align-items:center; }
   .stat-item::after { display:none; }
   .newsletter-form { flex-direction:column; }
   footer { flex-direction:column; text-align:center; }
