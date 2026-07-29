@@ -125,7 +125,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--dark);-webkit-f
     <p class="review-sub" id="r-sub"></p>
     <div class="stars">★★★★★</div>
     <div class="review-points" id="r-points"></div>
-    <a href="https://amazon.de" target="_blank" class="btn-primary" id="r-btn"></a>
+    <a href="https://www.amazon.de/review/create-review?asin=B0H6XHPRJW" target="_blank" rel="noopener" class="btn-primary" id="r-btn"></a>
     <p class="review-legal" id="r-legal"></p>
   </div>
 </section>
@@ -143,7 +143,7 @@ body{font-family:var(--sans);background:var(--cream);color:var(--dark);-webkit-f
       <button class="copy-btn" id="copy-btn" onclick="copyCode()"></button>
     </div>
     <p class="coupon-validity" id="c-validity"></p>
-    <a href="https://amazon.de" target="_blank" class="btn-amazon" id="c-btn"></a>
+    <a href="https://www.amazon.de/dp/B0H6XHPRJW" target="_blank" rel="noopener" class="btn-amazon" id="c-btn"></a>
   </div>
 </section>
 
@@ -261,6 +261,57 @@ const COPY = {
       ],
       legal: 'LONVIQ is a brand of MOLIS Sp.\u202fz\u202fo.o., Akacjowa\u202f2, 55-080 Smolec, Poland. Food supplement. Not a medicinal product. Do not exceed the recommended daily dose.'
     }
+  },
+  PL: {
+    lang: 'pl',
+    hero: {
+      eyebrow: 'BEZ MAGII. TYLKO SKŁADNIKI.',
+      h1: 'Dziękujemy za wybór<br><span>LONVIQ.</span>',
+      sub: 'To suplement zadawkowany tak, żeby naprawdę działać — a nie żeby dobrze wyglądać na etykiecie. Twój wybór wiele dla nas znaczy.'
+    },
+    quality: {
+      eyebrow: 'CO TRZYMASZ W RĘKACH',
+      h2: 'Pełna dawka.<br>Bez skrótów.',
+      sub: 'Każdy składnik w LONVIQ Kollagen Beauty został dobrany z jednym celem: dostarczyć dawkę, która naprawdę coś robi.',
+      pillars: [
+        { icon: '14 710', title: 'mg peptydów kolagenu', text: 'Hydrolizat kolagenu wołowego typu I\u202f&\u202fIII. Nie 2 000\u202fmg — typowa dawka marketingowa. Tylko dawka skuteczna.' },
+        { icon: '200', title: 'mg witaminy C', text: 'Askorbinian wapnia — stabilna, przyswajalna forma. Pomaga w prawidłowej produkcji kolagenu.*' },
+        { icon: '0', title: 'wypełniaczy', text: 'Bez cukru. Bez aromatów. Bez słodzików. Bez maltodekstryny. Tylko to, co jest na etykiecie.' }
+      ],
+      legal: '* Oświadczenie zdrowotne dozwolone zgodnie z rozporządzeniem UE nr\u202f1924/2006.'
+    },
+    review: {
+      eyebrow: 'TWOJA OPINIA SIĘ LICZY',
+      h2: 'Spodobało Ci się LONVIQ?<br>Daj znać innym.',
+      sub: 'Szczere opinie prawdziwych osób pomagają innym kobietom podjąć właściwą decyzję — bez obietnic influencerów.',
+      points: [
+        '<strong>Jak się rozpuszcza?</strong> Całkowicie, bez grudek?',
+        '<strong>Smak i zapach</strong> — czy w ogóle coś czuć?',
+        '<strong>Pierwsze wrażenia</strong> — nawet po kilku dniach Twoja opinia pomaga.',
+        '<strong>Czy warto polecić?</strong> To najuczciwsza odpowiedź.'
+      ],
+      btn: 'Oceń teraz na Amazon',
+      legal: 'Wystawienie opinii zajmuje mniej niż 2 minuty.\nTwój kod rabatowy czeka już poniżej — niezależnie od Twojej opinii.'
+    },
+    coupon: {
+      eyebrow: 'NASZE PODZIĘKOWANIE',
+      h2: '10\u202f% rabatu na<br>następne zamówienie.',
+      sub: 'W podziękowaniu za Twoje zaufanie dajemy Ci kod rabatowy na następne zamówienie na Amazon.de. Wpisz go po prostu przy kasie.',
+      label: 'Twój osobisty kod rabatowy',
+      value: '10\u202f% rabatu na Amazon.de',
+      copyBtn: 'Kopiuj kod',
+      copied: 'Skopiowano! \u2713',
+      validity: 'Ważny na Amazon.de\u00b7 Nie łączy się z innymi promocjami\nTylko produkty LONVIQ\u00b7 Ograniczona dostępność',
+      btn: 'Kup teraz na Amazon.de'
+    },
+    footer: {
+      links: [
+        { t: 'lonviq.com', u: 'https://lonviq.com' },
+        { t: 'Prywatność', u: 'https://lonviq.com/privacy.html' },
+        { t: 'Nota prawna', u: 'https://lonviq.com/imprint.html' }
+      ],
+      legal: 'LONVIQ to marka MOLIS Sp.\u202fz\u202fo.o., Akacjowa\u202f2, 55-080 Smolec, Polska. Suplement diety. Nie jest lekiem. Nie przekraczaj zalecanej dziennej porcji.'
+    }
   }
 };
 
@@ -271,6 +322,7 @@ function setLang(l) {
   document.getElementById('btn-de').classList.toggle('active', l === 'DE');
   document.getElementById('btn-en').classList.toggle('active', l === 'EN');
   document.documentElement.lang = COPY[l].lang;
+  try { localStorage.setItem('lonviq_lang', l.toLowerCase()); } catch(e){}
   render();
 }
 
@@ -354,7 +406,17 @@ function copyCode() {
   });
 }
 
-render();
+/* language bootstrap: honour an explicit choice, else Polish IP -> Polish
+   (Cloudflare /cdn-cgi/trace, no PL button — consistent with the homepage) */
+(function(){
+  var saved; try { saved = localStorage.getItem('lonviq_lang'); } catch(e){}
+  if (saved) { setLang(saved.toUpperCase()); return; }
+  render();
+  fetch('/cdn-cgi/trace').then(function(r){ return r.text(); }).then(function(t){
+    var m = t.match(/^loc=([A-Z]{2})/m);
+    if (m && m[1] === 'PL') setLang('PL');
+  }).catch(function(){});
+})();
 </script>
 </body>
 </html>
